@@ -1,5 +1,6 @@
 package com.backend.common;
 
+import com.backend.oauth.Role;
 import com.backend.oauth.User;
 import com.backend.oauth.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,11 +30,10 @@ public class JoinService {
             return;
         }
 
-        User data = new User();
-
-        data.setUsername(username);
-        data.setPassword(bCryptPasswordEncoder.encode(password));
-        data.setRole("ROLE_ADMIN");
+        User data = User.builder()
+                .username(username)
+                .password(bCryptPasswordEncoder.encode(password))
+                .role(Role.USER).build();
 
         userRepository.save(data);
     }

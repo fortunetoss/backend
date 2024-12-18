@@ -6,6 +6,7 @@ import lombok.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+
 public class User {
 
     @Id
@@ -27,4 +28,22 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Builder
+    public User(String username, String password, String name, String email, Role role) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.role = role;
+    }
+
+    public void updateEmail(String email) {
+        this.email = email;
+    }
+
+    public void updateName(String email) {
+        this.name = name;
+    }
+
 }

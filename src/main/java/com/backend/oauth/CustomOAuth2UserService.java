@@ -7,9 +7,11 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 @Slf4j
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
@@ -43,32 +45,32 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         if (existData == null) {
 
-            User user = new User();
-            user.setUsername(username);
-            user.setEmail(oAuth2Response.getEmail());
-            user.setName(oAuth2Response.getName());
-            user.setRole("ROLE_USER");
+            User user = User.builder()
+                    .username(username)
+                    .email(oAuth2Response.getEmail())
+                    .name(oAuth2Response.getName())
+                    .role(Role.USER)
+                    .build();
 
             userRepository.save(user);
 
             UserDTO userDTO = new UserDTO();
             userDTO.setUsername(username);
             userDTO.setName(oAuth2Response.getName());
-            userDTO.setRole("ROLE_USER");
+            userDTO.setRole("ROLE_"+user.getRole());
 
             return new CustomOAuth2User(userDTO);
         }
         else {
 
-            existData.setEmail(oAuth2Response.getEmail());
-            existData.setName(oAuth2Response.getName());
-
-            userRepository.save(existData);
+            existData.updateEmail(oAuth2Response.getEmail());
+            existData.updateName(oAuth2Response.getName());
 
             UserDTO userDTO = new UserDTO();
             userDTO.setUsername(existData.getUsername());
             userDTO.setName(oAuth2Response.getName());
-            userDTO.setRole(existData.getRole());
+//            userDTO.setRole(String.valueOf(existData.getRole()));
+            userDTO.setRole("ROLE_"+existData.getRole());
 
             return new CustomOAuth2User(userDTO);
         }

@@ -104,11 +104,11 @@ public class ReissueController {
 
         Date date = new Date(System.currentTimeMillis() + expiredMs);
 
-        RefreshEntity refreshEntity = new RefreshEntity();
-        refreshEntity.setUsername(username);
-        refreshEntity.setRefresh(refresh);
-        refreshEntity.setExpiration(date.toString());
+        RefreshTokenInfo refreshTokenInfo = new RefreshTokenInfo();
+        refreshTokenInfo.setUsername(username);
+        refreshTokenInfo.setRefresh(refresh);
+        refreshTokenInfo.setExpiration(date.toString());
 
-        refreshRepository.save(refreshEntity);
+        refreshRepository.save(refreshTokenInfo);
     }
 }

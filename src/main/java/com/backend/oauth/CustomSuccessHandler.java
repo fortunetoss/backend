@@ -1,7 +1,7 @@
 package com.backend.oauth;
 
 import com.backend.common.JWTUtil;
-import com.backend.common.RefreshEntity;
+import com.backend.common.RefreshTokenInfo;
 import com.backend.common.RefreshRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -49,7 +49,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         //Refresh 토큰 저장
         addRefreshEntity(username, refresh, 86400000L);
 
-        response.addCookie(createCookie("Authorization", token));
+        response.addCookie(createCookie("access", token));
 
         response.addCookie(createCookie("refresh", refresh));
 //        response.addCookie(createCookie("refresh", refresh));
@@ -75,11 +75,11 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         Date date = new Date(System.currentTimeMillis() + expiredMs);
 
-        RefreshEntity refreshEntity = new RefreshEntity();
-        refreshEntity.setUsername(username);
-        refreshEntity.setRefresh(refresh);
-        refreshEntity.setExpiration(date.toString());
+        RefreshTokenInfo refreshTokenInfo = new RefreshTokenInfo();
+        refreshTokenInfo.setUsername(username);
+        refreshTokenInfo.setRefresh(refresh);
+        refreshTokenInfo.setExpiration(date.toString());
 
-        refreshRepository.save(refreshEntity);
+        refreshRepository.save(refreshTokenInfo);
     }
 }

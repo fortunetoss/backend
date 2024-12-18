@@ -1,6 +1,8 @@
-package com.backend.common;
+package com.backend.oauth;
 
-import com.backend.oauth.CustomUserDetails;
+import com.backend.common.JWTUtil;
+import com.backend.common.RefreshRepository;
+import com.backend.common.RefreshTokenInfo;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
@@ -63,9 +65,6 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             password = obtainPassword(request);
         }
 
-        log.info("Username: {}", username);
-        log.info("Password: {}", password);
-
         //스프링 시큐리티에서 username과 password를 검증하기 위해서는 token에 담아야 함
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password, null);
 
@@ -96,7 +95,6 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
 //        response.addHeader("Authorization", "Bearer " + token);
 
-        log.info("header=====");
         response.addHeader("access", token);
         response.addCookie(createCookie("refresh", refresh));
 
@@ -124,12 +122,12 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         Date date = new Date(System.currentTimeMillis() + expiredMs);
 
-        RefreshEntity refreshEntity = new RefreshEntity();
-        refreshEntity.setUsername(username);
-        refreshEntity.setRefresh(refresh);
-        refreshEntity.setExpiration(date.toString());
+        RefreshTokenInfo refreshTokenInfo = new RefreshTokenInfo();
+        refreshTokenInfo.setUsername(username);
+        refreshTokenInfo.setRefresh(refresh);
+        refreshTokenInfo.setExpiration(date.toString());
 
-        refreshRepository.save(refreshEntity);
+        refreshRepository.save(refreshTokenInfo);
     }
 
 

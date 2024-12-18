@@ -2,8 +2,8 @@ package com.backend.common;
 
 import com.backend.oauth.CustomOAuth2UserService;
 import com.backend.oauth.CustomSuccessHandler;
+import com.backend.oauth.LoginFilter;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
