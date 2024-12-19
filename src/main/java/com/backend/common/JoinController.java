@@ -1,5 +1,6 @@
 package com.backend.common;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ public class JoinController {
     }
 
     @PostMapping("/join")
-    public String joinProcess(@RequestBody JoinDTO joinDTO) {
+    public String joinProcess(@RequestBody @Valid JoinDTO joinDTO) {
 
         System.out.println(joinDTO.getUsername());
         joinService.joinProcess(joinDTO);
