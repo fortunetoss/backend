@@ -86,66 +86,6 @@ public class JWTFilter extends OncePerRequestFilter {
         }
 
 
-
-        //cookie들을 불러온 뒤 Authorization Key에 담긴 쿠키를 찾음
-//        String authorization = null;
-//
-//        Cookie[] cookies = request.getCookies();
-//
-//        if(cookies==null){
-//
-//        }else {
-//
-//
-//            for (Cookie cookie : cookies) {
-//
-//                if (cookie.getName().equals("Authorization")) {
-//
-//                    System.out.println(cookie.getName());
-//
-//
-//                    authorization = cookie.getValue();
-//                }
-//            }
-//        }
-
-//        //Authorization 헤더 검증
-////        없으면 로그인 해야함.
-//        if (authorization == null) {
-//
-//            System.out.println("token null");
-//            filterChain.doFilter(request, response);
-//
-//            //조건이 해당되면 메소드 종료 (필수)
-//            return;
-//        }
-
-//        //토큰
-//        String token = authorization;
-//        System.out.println("======1");
-
-        //토큰 소멸 시간 검증
-//        있는데 유효하지 않으면 refresh 도입 시 refresh토큰 로직으로 가야함.(401코드)
-//        try{
-//        if (jwtUtil.isExpired(token)) {
-//            System.out.println("======2");
-//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//            response.getWriter().write("Token has expired. Please refresh your token.");
-//            response.getWriter().flush();
-//
-//            System.out.println("token expired");
-//            filterChain.doFilter(request, response);
-//
-//            //조건이 해당되면 메소드 종료 (필수)
-//            return;
-//        }}
-//        catch (Exception e){
-//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//            response.getWriter().write("Token has expired. Please refresh your token.");
-//            response.getWriter().flush();
-//        }
-//        System.out.println("======3");
-
         //토큰에서 username과 role 획득
         String username = jwtUtil.getUsername(accessToken);
         String role = jwtUtil.getRole(accessToken);
@@ -164,5 +104,7 @@ public class JWTFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authToken);
 
         filterChain.doFilter(request, response);
+
+
     }
 }

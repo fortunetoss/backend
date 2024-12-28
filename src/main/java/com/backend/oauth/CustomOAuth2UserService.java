@@ -23,8 +23,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         OAuth2User oAuth2User = super.loadUser(userRequest);
 
-        log.info(oAuth2User.toString());
-
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
         OAuth2Response oAuth2Response = null;
         if (registrationId.equals("naver")) {
@@ -35,9 +33,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
             oAuth2Response = new GoogleResponse(oAuth2User.getAttributes());
         }
-        else {
+        else if (registrationId.equals("kakao")) {
 
-            return null;
+            oAuth2Response = new KakaoResponse(oAuth2User.getAttributes());
         }
 
         String username = oAuth2Response.getProvider()+" "+oAuth2Response.getProviderId();
