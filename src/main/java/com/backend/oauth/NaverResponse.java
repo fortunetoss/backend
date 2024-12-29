@@ -34,4 +34,9 @@ public class NaverResponse implements OAuth2Response{
 
         return attribute.get("name").toString();
     }
+
+    @Override
+    public String getImageUrl() {
+        return "";
+    }
 }

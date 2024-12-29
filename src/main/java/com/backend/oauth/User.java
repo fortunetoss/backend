@@ -29,13 +29,16 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private String imageUrl;
+
     @Builder
-    public User(String username, String password, String name, String email, Role role) {
+    public User(String username, String password, String name, String email, Role role, String imageUrl) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
         this.role = role;
+        this.imageUrl = imageUrl;
     }
 
     public void updateEmail(String email) {
@@ -44,6 +47,10 @@ public class User {
 
     public void updateName(String email) {
         this.name = name;
+    }
+
+    public void updateImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
 }
