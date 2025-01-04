@@ -49,7 +49,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         //Refresh 토큰 저장
         addRefreshEntity(username, refresh, 86400000L);
 
-        response.addCookie(createCookie("access", token));
+//        response.addCookie(createCookie("access", token));
 
         response.addCookie(createCookie("refresh", refresh));
 //        response.addCookie(createCookie("refresh", refresh));
