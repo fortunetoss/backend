@@ -31,6 +31,8 @@ public class User {
 
     private String imageUrl;
 
+    private Integer count = 8;
+
     @Builder
     public User(String username, String password, String name, String email, Role role, String imageUrl) {
         this.username = username;
@@ -51,6 +53,10 @@ public class User {
 
     public void updateImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public void updateCount() {
+        this.count++;
     }
 
 }
