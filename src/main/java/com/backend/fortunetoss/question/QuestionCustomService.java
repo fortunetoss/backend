@@ -1,9 +1,7 @@
 package com.backend.fortunetoss.question;
 
-public interface QuestionService {
+public interface QuestionCustomService {
 
     void save(CustomQuestion customQuestion);
-
-    Question getRandomQuestion();
 
 }

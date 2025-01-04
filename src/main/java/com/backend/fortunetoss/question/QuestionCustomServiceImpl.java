@@ -1,5 +1,6 @@
 package com.backend.fortunetoss.question;
 
+import com.backend.pouch.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,9 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class QuestionServiceImpl implements QuestionService{
+public class QuestionCustomServiceImpl implements QuestionCustomService {
 
-    private final QuestionRepository questionRepository;
+    private final QuestionCustomRepository questionCustomRepository;
 
     /**
      * 사용자 정의 질문 저장
@@ -18,14 +19,8 @@ public class QuestionServiceImpl implements QuestionService{
     @Override
     public void save(CustomQuestion customQuestion) {
         // 저장
-        questionRepository.save(customQuestion);
+        questionCustomRepository.save(customQuestion);
     }
 
-    /**
-     * 랜덤으로 1개의 질문을 조회
-     */
-    public Question getRandomQuestion() {
-        return questionRepository.findRandomQuestion();
-    }
 
 }

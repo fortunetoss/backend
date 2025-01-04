@@ -7,27 +7,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class QuestionController {
+public class QuestionCustomController {
 
-    private final QuestionService questionService;
+    private final QuestionCustomService questionCustomService;
 
     /**
      * 사용자 정의 질문 생성
      */
     @PostMapping("/question")
     public ResponseEntity<?> createCustomQuestion(@RequestBody CustomQuestion customQuestion) {
-        questionService.save(customQuestion);
+        questionCustomService.save(customQuestion);
         return ResponseEntity.ok("작성 성공");
     }
-
-    /**
-     * 랜덤으로 1개의 질문 조회
-     */
-    @GetMapping("/random")
-    public ResponseEntity<Question> getRandomQuestion() {
-        Question randomQuestion = questionService.getRandomQuestion();
-        return ResponseEntity.ok(randomQuestion);
-    }
-
 
 }
