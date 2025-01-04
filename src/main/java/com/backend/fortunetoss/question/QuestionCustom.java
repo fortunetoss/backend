@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "custom_question") // 테이블 이름 매핑
-public class CustomQuestion {
+public class QuestionCustom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

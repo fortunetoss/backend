@@ -15,7 +15,7 @@ public class QuestionCustomController {
      * 사용자 정의 질문 생성
      */
     @PostMapping("/question")
-    public ResponseEntity<?> createCustomQuestion(@RequestBody CustomQuestion customQuestion) {
+    public ResponseEntity<?> createCustomQuestion(@RequestBody QuestionCustom customQuestion) {
         questionCustomService.save(customQuestion);
         return ResponseEntity.ok("작성 성공");
     }

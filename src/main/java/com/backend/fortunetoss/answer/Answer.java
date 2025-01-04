@@ -1,6 +1,6 @@
 package com.backend.fortunetoss.answer;
 
-import com.backend.fortunetoss.question.CustomQuestion;
+import com.backend.fortunetoss.question.QuestionCustom;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +21,6 @@ public class Answer {
 
     @ManyToOne
     @JoinColumn(name = "custom_question_id")
-    private CustomQuestion customQuestion; // 질문지 연관관계설정
+    private QuestionCustom customQuestion; // 질문지 연관관계설정
 }
 

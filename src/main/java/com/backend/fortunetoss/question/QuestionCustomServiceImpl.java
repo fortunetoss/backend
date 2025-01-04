@@ -1,6 +1,5 @@
 package com.backend.fortunetoss.question;
 
-import com.backend.pouch.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +16,7 @@ public class QuestionCustomServiceImpl implements QuestionCustomService {
      * @param customQuestion 저장할 사용자 정의 질문 객체
      */
     @Override
-    public void save(CustomQuestion customQuestion) {
+    public void save(QuestionCustom customQuestion) {
         // 저장
         questionCustomRepository.save(customQuestion);
     }
