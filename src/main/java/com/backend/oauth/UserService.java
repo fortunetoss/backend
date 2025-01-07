@@ -1,9 +1,11 @@
 package com.backend.oauth;
 
+import com.backend.fortunetoss.user.dto.UserResponse;
+import com.backend.fortunetoss.user.dto.UserUpdateRequest;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +37,26 @@ public class UserService {
 
     }
 
+    /*
+    * 닉네임 변경
+    * */
+    public UserResponse updateName(Long userId, UserUpdateRequest request) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
 
+        user.updateName(request.getName());
+        userRepository.save(user);
 
+        return new UserResponse(user.getName());
+    }
+
+    /*
+     * 닉네임 조회
+     * */
+    public UserResponse getName(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+
+        return new UserResponse(user.getName());
+    }
 }

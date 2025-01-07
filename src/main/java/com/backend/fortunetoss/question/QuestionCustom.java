@@ -26,6 +26,7 @@ public class QuestionCustom {
     private String select3;
     private String select4;
     private String answer;
+    private String content; // 덕담
 
     @OneToMany(mappedBy = "customQuestion", cascade = CascadeType.ALL)
     @JsonIgnore // 직렬화 시 무시

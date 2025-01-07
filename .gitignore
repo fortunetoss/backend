@@ -40,3 +40,5 @@ out/
 ### Custom ###
 *.yml
 *.memo
+
+.DS_Store

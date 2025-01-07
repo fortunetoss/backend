@@ -47,7 +47,7 @@ public class User {
         this.email = email;
     }
 
-    public void updateName(String email) {
+    public void updateName(String name) {
         this.name = name;
     }
 
