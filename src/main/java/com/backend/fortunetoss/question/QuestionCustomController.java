@@ -1,5 +1,6 @@
 package com.backend.fortunetoss.question;
 
+import com.backend.fortunetoss.answer.dto.AnswerQuestionCustomResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,5 +20,7 @@ public class QuestionCustomController {
         questionCustomService.save(customQuestion);
         return ResponseEntity.ok("작성 성공");
     }
+
+
 
 }

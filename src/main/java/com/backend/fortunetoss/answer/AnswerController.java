@@ -1,6 +1,7 @@
 package com.backend.fortunetoss.answer;
 
 import com.backend.common.ResponseDto;
+import com.backend.fortunetoss.answer.dto.AnswerQuestionCustomResponse;
 import com.backend.fortunetoss.answer.dto.AnswerResponse;
 import com.backend.fortunetoss.answer.dto.SubmitRequest;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +19,46 @@ public class AnswerController {
     private final AnswerService answerService;
 
     /**
+     * 응답자가 최초 링크접속시 받는 질문지
+     * 커스텀 질문지 가져오기
+     */
+    @GetMapping("/answer/{questionCustomId}")
+    public ResponseEntity<ResponseDto<AnswerQuestionCustomResponse>> getQuestionCustom(@PathVariable Long questionCustomId) {
+
+        try {
+            // 질문지 조회
+            AnswerQuestionCustomResponse response = answerService.getQuestionCustom(questionCustomId);
+
+            // 성공 응답 생성
+            ResponseDto<AnswerQuestionCustomResponse> successResponse = new ResponseDto<>(
+                    "success",
+                    "질문지가 성공적으로 조회되었습니다.",
+                    response,
+                    null,
+                    200
+            );
+
+            return ResponseEntity.ok(successResponse);
+
+        } catch (IllegalArgumentException e) {
+            // 실패 응답 생성
+            ResponseDto<AnswerQuestionCustomResponse> errorResponse = new ResponseDto<>(
+                    "fail",
+                    "질문지를 찾을 수 없습니다.",
+                    null,
+                    new ResponseDto.ErrorDetails(e.getMessage(), "ID: " + questionCustomId),
+                    404
+            );
+
+            return ResponseEntity.status(404).body(errorResponse);
+        }
+    }
+
+
+    /**
      * 사용자가 질문에 대한 답변 제출
      */
-    @PostMapping("answer/{questionId}")
+    @PostMapping("/answer/{questionId}")
     public ResponseEntity<?> submitAnswer(
             @PathVariable Long questionId,
             @RequestBody SubmitRequest submitRequest) {
@@ -73,7 +111,7 @@ public class AnswerController {
     /**
      * 질문에 대한 통계 데이터 조회
      */
-    @GetMapping("/answer/{questionId}")
+    @GetMapping("/answer/result/{questionId}")
     public ResponseEntity<?> getAnswer(@PathVariable Long questionId) {
         Map<String, Object> answers = answerService.calculateStatistics(questionId);
 

@@ -1,5 +1,6 @@
 package com.backend.fortunetoss.answer;
 
+import com.backend.fortunetoss.answer.dto.AnswerQuestionCustomResponse;
 import com.backend.fortunetoss.answer.dto.AnswerResponse;
 import com.backend.fortunetoss.question.QuestionCustom;
 import com.backend.fortunetoss.question.QuestionCustomRepository;
@@ -17,6 +18,23 @@ public class AnswerServiceImpl implements AnswerService {
     private final AnswerRepository answerRepository;
     private final QuestionCustomRepository questionCustomRepository;
 
+
+    @Override
+    public AnswerQuestionCustomResponse getQuestionCustom(Long questionCustomId) {
+
+        // 질문지를 데이터베이스에서 조회
+        QuestionCustom question = questionCustomRepository.findById(questionCustomId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 ID의 질문을 찾을 수 없습니다."));
+
+        // 조회된 데이터를 DTO로 변환하여 반환
+        return new AnswerQuestionCustomResponse(
+                question.getTitle(),
+                question.getSelect1(),
+                question.getSelect2(),
+                question.getSelect3(),
+                question.getSelect4()
+        );
+    }
 
     @Override
     public AnswerResponse save(Long questionId, String userAnswer, String solverName) {
