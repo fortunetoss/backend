@@ -1,5 +1,6 @@
 package com.backend.fortunetoss.answer;
 
+import com.backend.fortunetoss.answer.dto.AnswerResponse;
 import com.backend.fortunetoss.question.QuestionCustom;
 import com.backend.fortunetoss.question.QuestionCustomRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class AnswerServiceImpl implements AnswerService {
 
 
     @Override
-    public Answer save(Long questionId, String userAnswer, String solverName) {
+    public AnswerResponse save(Long questionId, String userAnswer, String solverName) {
         // 질문지를 데이터베이스에서 조회
         QuestionCustom question = questionCustomRepository.findById(questionId)
                 .orElseThrow(() -> new IllegalArgumentException("질문을 찾을 수 없습니다."));
@@ -29,7 +30,19 @@ public class AnswerServiceImpl implements AnswerService {
         answer.setSolver(solverName);
         answer.setCustomQuestion(question);
 
-        return answerRepository.save(answer);
+        // 정답 비교 로직
+        boolean isCorrect = question.getAnswer().equals(userAnswer);
+
+        // 답변 저장
+        answerRepository.save(answer);
+
+        return new AnswerResponse(answer.getId(),
+                isCorrect,
+                question.getContent(), // 덕담 포함
+                question.getTitle(),
+                userAnswer,
+                solverName
+        );
     }
 
     @Override

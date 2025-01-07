@@ -1,6 +1,7 @@
 package com.backend.fortunetoss.answer;
 
 import com.backend.fortunetoss.question.QuestionCustom;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class Answer {
 
     @ManyToOne
     @JoinColumn(name = "custom_question_id")
+    @JsonIgnore
     private QuestionCustom customQuestion; // 질문지 연관관계설정
 }
 
