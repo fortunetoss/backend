@@ -1,8 +1,8 @@
 package com.backend.common;
 
-import com.backend.oauth.Role;
-import com.backend.oauth.User;
-import com.backend.oauth.UserRepository;
+import com.backend.fortunetoss.user.Role;
+import com.backend.fortunetoss.user.User;
+import com.backend.fortunetoss.user.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

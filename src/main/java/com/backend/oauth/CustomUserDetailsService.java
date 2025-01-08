@@ -1,5 +1,8 @@
 package com.backend.oauth;
 
+import com.backend.fortunetoss.user.User;
+import com.backend.fortunetoss.user.UserDTO;
+import com.backend.fortunetoss.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

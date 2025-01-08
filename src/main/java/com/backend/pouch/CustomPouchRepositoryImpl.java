@@ -1,6 +1,6 @@
 package com.backend.pouch;
 
-import com.backend.oauth.User;
+import com.backend.fortunetoss.user.User;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Repository;

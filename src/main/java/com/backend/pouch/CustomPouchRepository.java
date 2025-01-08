@@ -1,6 +1,6 @@
 package com.backend.pouch;
 
-import com.backend.oauth.User;
+import com.backend.fortunetoss.user.User;
 
 public interface CustomPouchRepository {
 

@@ -1,4 +1,4 @@
-package com.backend.oauth;
+package com.backend.fortunetoss.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package com.backend.oauth;
+package com.backend.fortunetoss.user;
 
 import jakarta.persistence.*;
 import lombok.*;

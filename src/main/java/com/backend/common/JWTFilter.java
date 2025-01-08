@@ -1,11 +1,10 @@
 package com.backend.common;
 
 import com.backend.oauth.CustomOAuth2User;
-import com.backend.oauth.UserDTO;
+import com.backend.fortunetoss.user.UserDTO;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

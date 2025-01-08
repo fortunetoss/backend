@@ -3,7 +3,6 @@ package com.backend.fortunetoss.user;
 import com.backend.common.ResponseDto;
 import com.backend.fortunetoss.user.dto.UserResponse;
 import com.backend.fortunetoss.user.dto.UserUpdateRequest;
-import com.backend.oauth.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

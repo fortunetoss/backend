@@ -1,7 +1,8 @@
-package com.backend.oauth;
+package com.backend.fortunetoss.user;
 
 import com.backend.fortunetoss.user.dto.UserResponse;
 import com.backend.fortunetoss.user.dto.UserUpdateRequest;
+import com.backend.oauth.CustomOAuth2User;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
