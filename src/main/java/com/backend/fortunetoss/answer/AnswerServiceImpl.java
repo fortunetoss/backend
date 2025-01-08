@@ -2,6 +2,7 @@ package com.backend.fortunetoss.answer;
 
 import com.backend.fortunetoss.answer.dto.AnswerQuestionCustomResponse;
 import com.backend.fortunetoss.answer.dto.AnswerResponse;
+import com.backend.fortunetoss.answer.dto.ResultQuestionResponse;
 import com.backend.fortunetoss.question.QuestionCustom;
 import com.backend.fortunetoss.question.QuestionCustomRepository;
 import lombok.RequiredArgsConstructor;
@@ -76,7 +77,7 @@ public class AnswerServiceImpl implements AnswerService {
 
 
     @Override
-    public Map<String, Object> calculateStatistics(Long questionId) {
+    public ResultQuestionResponse calculateStatistics(Long questionId) {
         // 질문 조회
         QuestionCustom question = questionCustomRepository.findById(questionId)
                 .orElseThrow(() -> new IllegalArgumentException("질문을 찾을 수 없습니다."));
@@ -110,6 +111,13 @@ public class AnswerServiceImpl implements AnswerService {
                 "choices", choiceCounts
         );
 
-        return result;
+        return ResultQuestionResponse.builder()
+                .questionId(questionId)
+                .questionTitle(question.getTitle())
+                .totalResponses(totalResponses)
+                .correctResponses(correctResponses)
+                .accuracyRate(accuracyRate)
+                .choices(choiceCounts)
+                .build();
     }
 }

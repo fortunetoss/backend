@@ -3,6 +3,7 @@ package com.backend.fortunetoss.answer;
 import com.backend.common.ResponseDto;
 import com.backend.fortunetoss.answer.dto.AnswerQuestionCustomResponse;
 import com.backend.fortunetoss.answer.dto.AnswerResponse;
+import com.backend.fortunetoss.answer.dto.ResultQuestionResponse;
 import com.backend.fortunetoss.answer.dto.SubmitRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -113,7 +114,7 @@ public class AnswerController {
      */
     @GetMapping("/answer/result/{questionId}")
     public ResponseEntity<?> getAnswer(@PathVariable Long questionId) {
-        Map<String, Object> answers = answerService.calculateStatistics(questionId);
+        ResultQuestionResponse answers = answerService.calculateStatistics(questionId);
 
         return ResponseEntity.ok(answers);
     }
