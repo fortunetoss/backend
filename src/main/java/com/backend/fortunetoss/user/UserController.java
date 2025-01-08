@@ -53,11 +53,11 @@ public class UserController {
     /**
      * 이름 가져오기
      */
-    @GetMapping("/{userId}")
+    @GetMapping("name/{userId}")
     public ResponseEntity<ResponseDto<UserResponse>> getName(@PathVariable Long userId) {
         try {
             // 이름 조회 로직 호출
-            UserResponse userResponse = userService.getName(userId);
+            UserResponse userResponse = userService.getName();
 
             // 성공 응답 생성
             ResponseDto<UserResponse> response = new ResponseDto<>(

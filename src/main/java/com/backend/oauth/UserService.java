@@ -53,10 +53,9 @@ public class UserService {
     /*
      * 닉네임 조회
      * */
-    public UserResponse getName(Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+    public UserResponse getName() {
+        User currentUser = getCurrentUser(); // 현재 로그인된 사용자 가져오기
 
-        return new UserResponse(user.getName());
+        return new UserResponse(currentUser.getName());
     }
 }
