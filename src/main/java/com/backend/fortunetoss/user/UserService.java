@@ -59,4 +59,11 @@ public class UserService {
 
         return new UserResponse(currentUser.getName());
     }
+
+    public void deleteUser() {
+        User currentUser = getCurrentUser(); // 현재 로그인된 사용자 가져오기
+
+        userRepository.delete(currentUser);
+
+    }
 }

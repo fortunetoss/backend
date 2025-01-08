@@ -82,4 +82,10 @@ public class UserController {
             return ResponseEntity.status(404).body(response);
         }
     }
+
+
+    @DeleteMapping("/api/users")
+    public void deleteUser() {
+        userService.deleteUser();
+    }
 }
