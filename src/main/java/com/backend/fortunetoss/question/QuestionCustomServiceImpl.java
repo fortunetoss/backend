@@ -42,7 +42,7 @@ public class QuestionCustomServiceImpl implements QuestionCustomService {
                 .build();
 
         questionCustomRepository.save(questionCustom);
-        Optional<Shape> shape = shapeRepository.findByShape(questionCustomRequestDTO.getShape());
+        Optional<Shape> shape = shapeRepository.findByDomain(questionCustomRequestDTO.getShape());
         User user = userService.getCurrentUser();
 
         LuckyPouch luckyPouch = luckyPouchRepository.findByUserAndShapeAndQuestionCustomIsNull(user, shape.orElseThrow()).orElseThrow();
