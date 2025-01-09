@@ -9,6 +9,7 @@ import lombok.Setter;
 @Builder
 public class QuestionCustomRequestDTO {
 
+    private String shape;
     private String title;
     private String select1;
     private String select2;
