@@ -1,17 +1,13 @@
 package com.backend.fortunetoss.answer;
 
 import com.backend.fortunetoss.question.QuestionCustom;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 // 사용자가 제출한 답변을 저장
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +16,18 @@ public class Answer {
     private String answer; // 선택지 번호
     private String solver; // 작성자 이름
 
-    @ManyToOne
-    @JoinColumn(name = "custom_question_id")
-    @JsonIgnore
-    private QuestionCustom customQuestion; // 질문지 연관관계설정
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_custom_id")
+    private QuestionCustom questionCustom; // 질문지 연관관계설정
+
+    @Builder
+    public Answer(String answer, String solver) {
+        this.answer = answer;
+        this.solver = solver;
+    }
+
+    public void updateQuestionCustom(QuestionCustom questionCustom) {
+        this.questionCustom = questionCustom;
+    }
 }
 
