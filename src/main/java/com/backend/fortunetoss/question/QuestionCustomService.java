@@ -1,9 +1,12 @@
 package com.backend.fortunetoss.question;
 
+import com.backend.common.ResponseDto;
+import org.springframework.http.ResponseEntity;
+
 public interface QuestionCustomService {
 
-    void save(QuestionCustom customQuestion);
+    QuestionCustomResponseDTO save(QuestionCustomRequestDTO questionCustomRequestDTO);
 
-
+    void getQuestions();
 
 }
