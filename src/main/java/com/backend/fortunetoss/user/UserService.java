@@ -1,9 +1,8 @@
 package com.backend.fortunetoss.user;
 
-import com.backend.fortunetoss.user.dto.UserResponse;
+import com.backend.fortunetoss.user.dto.UserUpdateResponse;
 import com.backend.fortunetoss.user.dto.UserUpdateRequest;
 import com.backend.oauth.CustomOAuth2User;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,23 +40,22 @@ public class UserService {
     /*
     * 닉네임 변경
     * */
-    public UserResponse updateName(Long userId, UserUpdateRequest request) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+    public UserUpdateResponse updateName(UserUpdateRequest request) {
 
-        user.updateName(request.getName());
-        userRepository.save(user);
+        User currentUser = getCurrentUser(); // 현재 로그인된 사용자 가져오기
 
-        return new UserResponse(user.getName());
+        currentUser.updateName(request.getName());
+
+        return new UserUpdateResponse(currentUser.getName());
     }
 
     /*
      * 닉네임 조회
      * */
-    public UserResponse getName() {
+    public UserUpdateResponse getName() {
         User currentUser = getCurrentUser(); // 현재 로그인된 사용자 가져오기
 
-        return new UserResponse(currentUser.getName());
+        return new UserUpdateResponse(currentUser.getName());
     }
 
     public void deleteUser() {

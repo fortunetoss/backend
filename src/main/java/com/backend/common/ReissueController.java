@@ -83,7 +83,7 @@ public class ReissueController {
 
 
         //response
-        response.setHeader("access", newAccess);
+        response.setHeader("Authorization", "Bearer " + newAccess);
         response.addCookie(createCookie("refresh", newRefresh));
 
         return new ResponseEntity<>(HttpStatus.OK);

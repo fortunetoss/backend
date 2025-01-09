@@ -1,5 +1,7 @@
 package com.backend.oauth;
 
+import com.backend.fortunetoss.luckypouch.LuckyPouch;
+import com.backend.fortunetoss.shape.ShapeRepository;
 import com.backend.fortunetoss.user.Role;
 import com.backend.fortunetoss.user.User;
 import com.backend.fortunetoss.user.UserDTO;
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private final UserRepository userRepository;
+    private final ShapeRepository shapeRepository;
 
 
     @Override
@@ -57,10 +60,18 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
             userRepository.save(user);
 
+            shapeRepository.findAll().forEach(shape -> {
+                LuckyPouch luckyPouch = LuckyPouch.builder()
+                        .user(user)
+                        .shape(shape)
+                        .build();
+            });
+
             UserDTO userDTO = new UserDTO();
             userDTO.setUsername(username);
             userDTO.setName(oAuth2Response.getName());
             userDTO.setRole("ROLE_"+user.getRole());
+            userDTO.setNewUser(true);
 
             return new CustomOAuth2User(userDTO);
         }
@@ -75,6 +86,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             userDTO.setName(oAuth2Response.getName());
 //            userDTO.setRole(String.valueOf(existData.getRole()));
             userDTO.setRole("ROLE_"+existData.getRole());
+            userDTO.setNewUser(false);
 
             return new CustomOAuth2User(userDTO);
         }
