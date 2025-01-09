@@ -5,6 +5,7 @@ import com.backend.fortunetoss.shape.Shape;
 import com.backend.fortunetoss.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -33,4 +34,19 @@ public class LuckyPouch {
     private QuestionCustom questionCustom;
 
     private LocalDateTime createdDate;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdDate = LocalDateTime.now();
+    }
+
+    public void updateQuestionCustom(QuestionCustom questionCustom) {
+        this.questionCustom = questionCustom;
+    }
+
+    @Builder
+    public LuckyPouch(Shape shape, User user) {
+        this.shape = shape;
+        this.user = user;
+    }
 }

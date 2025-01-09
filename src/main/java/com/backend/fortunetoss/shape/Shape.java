@@ -1,6 +1,7 @@
 package com.backend.fortunetoss.shape;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 
 @Entity
@@ -14,4 +15,9 @@ public class Shape {
 
 
     private String shape;
+
+    @Builder
+    public Shape(String shape) {
+        this.shape = shape;
+    }
 }
