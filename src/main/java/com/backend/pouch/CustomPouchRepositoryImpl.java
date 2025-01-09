@@ -1,11 +1,12 @@
 package com.backend.pouch;
 
+import com.backend.fortunetoss.user.QUser;
 import com.backend.fortunetoss.user.User;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
 
-import static com.backend.oauth.QUser.*;
+import static com.backend.fortunetoss.user.QUser.*;
 import static com.backend.pouch.QPouch.*;
 import static com.backend.pouch.QQuestion.*;
 
