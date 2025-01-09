@@ -15,7 +15,7 @@ public class PouchService {
 
     private final UserService userService;
 
-    public Question findQuestion() {
+    public QuestionResponseDTO findQuestion() {
 
         User user = userService.getCurrentUser();
 
@@ -26,7 +26,13 @@ public class PouchService {
 
         pouchRepository.save(pouch);
 
-        return randomQuestion;
+        return QuestionResponseDTO.builder()
+                .title(randomQuestion.getTitle())
+                .select1(randomQuestion.getSelect1())
+                .select2(randomQuestion.getSelect2())
+                .select3(randomQuestion.getSelect3())
+                .select4(randomQuestion.getSelect4())
+                .build();
     }
 
 

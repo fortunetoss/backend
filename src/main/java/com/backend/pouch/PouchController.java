@@ -1,7 +1,10 @@
 package com.backend.pouch;
 
 
+import com.backend.common.ResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +17,12 @@ public class PouchController {
 
     // 사용자가 질문을 받아가는 엔드포인트
     @GetMapping("/pouch/question")
-    public Question getQuestion() {
-        return pouchService.findQuestion();
-    }
+    public ResponseEntity<ResponseDto<?>> getQuestion() {
+
+        QuestionResponseDTO questionResponseDTO = pouchService.findQuestion();
+
+        return new ResponseEntity<>(
+                new ResponseDto<>("success", "Random Question", questionResponseDTO, null, 200),
+                HttpStatus.OK);    }
+
 }

@@ -5,6 +5,8 @@ import com.backend.fortunetoss.answer.dto.AnswerResponse;
 import com.backend.fortunetoss.answer.dto.ResultQuestionResponse;
 import com.backend.fortunetoss.question.QuestionCustom;
 import com.backend.fortunetoss.question.QuestionCustomRepository;
+import com.backend.fortunetoss.user.User;
+import com.backend.fortunetoss.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,25 +42,27 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public AnswerResponse save(Long questionId, String userAnswer, String solverName) {
         // 질문지를 데이터베이스에서 조회
-        QuestionCustom question = questionCustomRepository.findById(questionId)
+        QuestionCustom questionCustom = questionCustomRepository.findById(questionId)
                 .orElseThrow(() -> new IllegalArgumentException("질문을 찾을 수 없습니다."));
 
         // 사용자의 답변 생성 및 저장
-        Answer answer = new Answer();
-        answer.setAnswer(userAnswer);
-        answer.setSolver(solverName);
-        answer.setCustomQuestion(question);
+        Answer answer = Answer.builder()
+                .answer(userAnswer)
+                .solver(solverName)
+                .build();
+
+        answer.updateQuestionCustom(questionCustom);
 
         // 정답 비교 로직
-        boolean isCorrect = question.getAnswer().equals(userAnswer);
+        boolean isCorrect = questionCustom.getAnswer().equals(userAnswer);
 
         // 답변 저장
         answerRepository.save(answer);
 
         return new AnswerResponse(answer.getId(),
                 isCorrect,
-                question.getContent(), // 덕담 포함
-                question.getTitle(),
+                questionCustom.getContent(), // 덕담 포함
+                questionCustom.getTitle(),
                 userAnswer,
                 solverName
         );
@@ -83,10 +87,10 @@ public class AnswerServiceImpl implements AnswerService {
                 .orElseThrow(() -> new IllegalArgumentException("질문을 찾을 수 없습니다."));
 
         // 전체 응답 수 계산
-        long totalResponses = answerRepository.countByCustomQuestionId(questionId);
+        long totalResponses = answerRepository.countByQuestionCustomId(questionId);
 
         // 정답 응답 수 계산
-        long correctResponses = answerRepository.countByCustomQuestionIdAndAnswer(questionId, question.getAnswer());
+        long correctResponses = answerRepository.countByQuestionCustomIdAndAnswer(questionId, question.getAnswer());
 
         // 정답률 계산
         double accuracyRate = totalResponses > 0
@@ -95,10 +99,10 @@ public class AnswerServiceImpl implements AnswerService {
 
         // 각 선택지별 응답 수 계산
         Map<String, Long> choiceCounts = Map.of(
-                question.getSelect1(), answerRepository.countByCustomQuestionIdAndAnswer(questionId, question.getSelect1()),
-                question.getSelect2(), answerRepository.countByCustomQuestionIdAndAnswer(questionId, question.getSelect2()),
-                question.getSelect3(), answerRepository.countByCustomQuestionIdAndAnswer(questionId, question.getSelect3()),
-                question.getSelect4(), answerRepository.countByCustomQuestionIdAndAnswer(questionId, question.getSelect4())
+                question.getSelect1(), answerRepository.countByQuestionCustomIdAndAnswer(questionId, question.getSelect1()),
+                question.getSelect2(), answerRepository.countByQuestionCustomIdAndAnswer(questionId, question.getSelect2()),
+                question.getSelect3(), answerRepository.countByQuestionCustomIdAndAnswer(questionId, question.getSelect3()),
+                question.getSelect4(), answerRepository.countByQuestionCustomIdAndAnswer(questionId, question.getSelect4())
         );
 
         // 결과 데이터 생성
@@ -120,4 +124,11 @@ public class AnswerServiceImpl implements AnswerService {
                 .choices(choiceCounts)
                 .build();
     }
+
+
+
+
+
+
+
 }

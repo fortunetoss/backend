@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, Long>, AnswerRepositoryCustom {
-    Long countByCustomQuestionIdAndAnswer(Long questionId, String select1);
+    Long countByQuestionCustomIdAndAnswer(Long questionId, String select1);
 
-    long countByCustomQuestionId(Long questionId);
+    long countByQuestionCustomId(Long questionId);
 }
