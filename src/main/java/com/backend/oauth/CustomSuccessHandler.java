@@ -54,8 +54,10 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         response.addCookie(createCookie("refresh", refresh));
 //        response.addCookie(createCookie("refresh", refresh));
 
+        boolean newUser = customUserDetails.isNewUser();
 
-        response.sendRedirect("http://localhost:8080/");
+
+        response.sendRedirect("http://localhost:3000/callback"+ "?newUser=" + newUser);
         response.setStatus(HttpStatus.OK.value());
 
     }
