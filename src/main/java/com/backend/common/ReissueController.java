@@ -93,7 +93,7 @@ public class ReissueController {
                 + "; Path=/"
 //                + "; Domain=api.mungwithme.com"  // **백엔드 도메인으로 설정**
                 + "; HttpOnly"                   // 클라이언트에서 접근 불가 (보안)
-                + "; Secure"                     // HTTPS에서만 쿠키 전송
+//                + "; Secure"                     // HTTPS에서만 쿠키 전송
                 + "; SameSite=None";             // 크로스 도메인에서 쿠키 전송 허용
         response.addHeader("Set-Cookie", cookieHeader);
 
