@@ -92,9 +92,9 @@ public class ReissueController {
     private Cookie createCookie(String key, String value) {
 
         Cookie cookie = new Cookie(key, value);
-        cookie.setMaxAge(24*60*60);
-        //cookie.setSecure(true);
-        //cookie.setPath("/");
+        cookie.setMaxAge(60*60*60);
+        cookie.setSecure(false);
+        cookie.setPath("/");
         cookie.setHttpOnly(true);
 
         return cookie;
