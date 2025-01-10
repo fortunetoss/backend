@@ -27,11 +27,20 @@ public class QuestionCustomController {
                 HttpStatus.OK);
     }
 
+    @GetMapping("/question/{questionCustomId}")
+    public ResponseEntity<ResponseDto<?>> getQuestionCustom(@PathVariable Long questionCustomId) {
 
-    @GetMapping("/questions")
-    public void getQuestions() {
-        questionCustomService.getQuestions();
+
+
+        questionCustomService.getQuestionCustom(questionCustomId);
+
+
+
+        return null;
     }
+
+
+
 
 
 
