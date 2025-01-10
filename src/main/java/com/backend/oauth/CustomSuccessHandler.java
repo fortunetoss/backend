@@ -51,15 +51,40 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
 //        response.addCookie(createCookie("access", token));
 
-        response.addCookie(createCookie("refresh", refresh));
 //        response.addCookie(createCookie("refresh", refresh));
+//        response.addCookie(createCookie("refresh", refresh));
+
+        setResponseTokens(response, refresh);
 
         boolean newUser = customUserDetails.isNewUser();
 
 
-        response.sendRedirect("http://localhost:3000/callback"+ "?newUser=" + newUser);
         response.setStatus(HttpStatus.OK.value());
 
+        response.sendRedirect("http://localhost:3000/callback"+ "?newUser=" + newUser);
+
+    }
+
+    private void setResponseTokens(HttpServletResponse response,String refreshToken) {
+
+
+        // 만료 시간 (초 단위)
+        int maxAge = (int)(86400000 / 1000);
+
+        // Set-Cookie 헤더를 사용하여 쿠키 속성 설정
+        String cookieHeader = "refresh=" + refreshToken
+                + "; Max-Age=" + maxAge
+                + "; Path=/"
+//                + "; Domain=api.mungwithme.com"  // **백엔드 도메인으로 설정**
+                + "; HttpOnly"                   // 클라이언트에서 접근 불가 (보안)
+                + "; Secure"                     // HTTPS에서만 쿠키 전송
+                + "; SameSite=None";             // 크로스 도메인에서 쿠키 전송 허용
+
+        response.addHeader("Set-Cookie", cookieHeader);
+
+//        response.addCookie(jwtUtil.createCookie("refresh", refreshToken));
+//        response.addHeader("Set-Cookie","SameSite=None");
+        response.setStatus(HttpStatus.OK.value());
     }
 
     private Cookie createCookie(String key, String value) {
