@@ -52,9 +52,22 @@ public class QuestionCustomService{
 
     }
 
-    public void getQuestionCustom(Long questionCustomId) {
+    public QuestionCustomRequestDTO getQuestionCustom(Long questionCustomId) {
         QuestionCustom questionCustom = questionCustomRepository.findById(questionCustomId).orElseThrow();
 
+        QuestionCustomRequestDTO questionCustomRequestDTO = QuestionCustomRequestDTO.builder()
+                .title(questionCustom.getTitle())
+                .select1(questionCustom.getSelect1())
+                .select2(questionCustom.getSelect2())
+                .select3(questionCustom.getSelect3())
+                .select4(questionCustom.getSelect4())
+                .answer(questionCustom.getAnswer())
+                .card(questionCustom.getCard())
+                .content(questionCustom.getContent())
+                .build();
+
+
+        return questionCustomRequestDTO;
 
 
     }

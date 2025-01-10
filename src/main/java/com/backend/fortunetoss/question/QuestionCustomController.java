@@ -27,16 +27,35 @@ public class QuestionCustomController {
                 HttpStatus.OK);
     }
 
+    /**
+     * 사용자 정의 질문 수정하기 위한 조회
+     * @param questionCustomId
+     * @return
+     */
     @GetMapping("/question/{questionCustomId}")
     public ResponseEntity<ResponseDto<?>> getQuestionCustom(@PathVariable Long questionCustomId) {
 
 
-
-        questionCustomService.getQuestionCustom(questionCustomId);
-
+        QuestionCustomRequestDTO questionCustom = questionCustomService.getQuestionCustom(questionCustomId);
 
 
-        return null;
+        return new ResponseEntity<>(
+                new ResponseDto<>("success", "get QuestionCustom success ", questionCustom, null, 200),
+                HttpStatus.OK);
+    }
+
+    /**
+     * 사용자 정의 질문 수정
+     * @param questionCustomId
+     * @return
+     */
+    @PatchMapping("/question/{questionCustomId}")
+    public ResponseEntity<ResponseDto<?>> updateQuestionCustom(@PathVariable Long questionCustomId) {
+
+
+        return new ResponseEntity<>(
+                new ResponseDto<>("success", "update QuestionCustom success ", null, null, 200),
+                HttpStatus.OK);
     }
 
 
