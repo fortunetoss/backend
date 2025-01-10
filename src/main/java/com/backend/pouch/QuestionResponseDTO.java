@@ -1,8 +1,12 @@
 package com.backend.pouch;
 
-import lombok.Builder;
+import lombok.*;
 
 @Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class QuestionResponseDTO {
 
     private String title;
