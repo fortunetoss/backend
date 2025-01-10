@@ -96,6 +96,8 @@ public class ReissueController {
         cookie.setSecure(false);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
+        cookie.setAttribute("SameSite", "None"); // Cross-Origin 전송 가능
+
 
         return cookie;
     }
