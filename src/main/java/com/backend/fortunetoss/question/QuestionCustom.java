@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class QuestionCustom {
     private String answer;
     private String card;
     private String content; // 덕담
+    private LocalDateTime createdAt;
 
 
     @OneToMany(mappedBy = "questionCustom", cascade = CascadeType.ALL)

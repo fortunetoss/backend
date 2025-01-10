@@ -9,7 +9,7 @@ import lombok.Setter;
 @Builder
 public class QuestionCustomRequestDTO {
 
-    private String shape;
+
     private String title;
     private String select1;
     private String select2;
@@ -17,5 +17,6 @@ public class QuestionCustomRequestDTO {
     private String select4;
     private String answer;
     private String card;
+    private String domain;
     private String content; // 덕담
 }
