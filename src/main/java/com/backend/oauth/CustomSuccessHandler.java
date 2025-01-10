@@ -56,13 +56,6 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         setResponseTokens(response, refresh);
 
-        boolean newUser = customUserDetails.isNewUser();
-
-
-        response.setStatus(HttpStatus.OK.value());
-
-        response.sendRedirect("http://localhost:3000/callback"+ "?newUser=" + newUser);
-
     }
 
     private void setResponseTokens(HttpServletResponse response,String refreshToken) {
