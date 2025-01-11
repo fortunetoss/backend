@@ -19,6 +19,22 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 
+    /*
+
+            {
+
+
+            저희가 파라미터(http://localhost:3000/access="access토큰값")
+
+            개발환경에서는 프론트에서는 받아서 헤더에 엑세스토큰 , refresh 없이.
+
+            백엔드 필터에서는 헤더에 엑세스 토큰이 있는지 확인
+
+
+            }
+
+     */
+
 @Component
 @RequiredArgsConstructor
 public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
@@ -40,7 +56,8 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         GrantedAuthority auth = iterator.next();
         String role = auth.getAuthority();
 
-        String token = jwtUtil.createJwt("access",username, role, 60*60*60L);
+//        String token = jwtUtil.createJwt("access",username, role, 60*60*60L);
+        String token = jwtUtil.createJwt("access",username, role, 86400000L);
 
         String refresh = jwtUtil.createJwt("refresh", username, role, 86400000L);
 //        String refresh = jwtUtil.createJwt(username, role, 86400000L);
@@ -54,8 +71,15 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 //        response.addCookie(createCookie("refresh", refresh));
 //        response.addCookie(createCookie("refresh", refresh));
 
-        setResponseTokens(response, refresh);
+        //
+//        setResponseTokens(response,refresh);
 
+
+
+//
+        boolean newUser = customUserDetails.isNewUser();
+
+        response.sendRedirect("http://localhost:3000/callback"+ "?newUser=" + newUser + "&access=" + token);
     }
 
     private void setResponseTokens(HttpServletResponse response,String refreshToken) {
@@ -69,15 +93,15 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
                 + "; Max-Age=" + maxAge
                 + "; Path=/"
 //                + "; Domain=api.mungwithme.com"  // **백엔드 도메인으로 설정**
-                + "; HttpOnly"                   // 클라이언트에서 접근 불가 (보안)
-//                + "; Secure"                     // HTTPS에서만 쿠키 전송
+                + "; HttpOnly"                  // 클라이언트에서 접근 불가 (보안)
+                + "; Secure"                     // HTTPS에서만 쿠키 전송
                 + "; SameSite=None";             // 크로스 도메인에서 쿠키 전송 허용
 
         response.addHeader("Set-Cookie", cookieHeader);
 
 //        response.addCookie(jwtUtil.createCookie("refresh", refreshToken));
 //        response.addHeader("Set-Cookie","SameSite=None");
-        response.setStatus(HttpStatus.OK.value());
+//        response.setStatus(HttpStatus.OK.value());
     }
 
     private Cookie createCookie(String key, String value) {
@@ -87,7 +111,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         cookie.setSecure(false);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
-        cookie.setAttribute("SameSite", "None"); // Cross-Origin 전송 가능
+        cookie.setAttribute("SameSite", "Lax"); // Cross-Origin 전송 가능
 
 
         return cookie;

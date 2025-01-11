@@ -14,7 +14,8 @@ public class CorsMvcConfig implements WebMvcConfigurer {
                 .exposedHeaders("Set-Cookie","Authorization")
                 .allowedOrigins("http://localhost:3000") // React 앱의 도메인
                 .allowCredentials(true)                 // 자격 증명 허용 (쿠키 포함)
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS").allowedHeaders("*");
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*");
 
     }
 }
