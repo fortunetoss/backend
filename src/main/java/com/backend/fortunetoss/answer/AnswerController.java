@@ -1,11 +1,12 @@
 package com.backend.fortunetoss.answer;
 
 import com.backend.common.ResponseDto;
-import com.backend.fortunetoss.answer.dto.AnswerQuestionCustomResponse;
-import com.backend.fortunetoss.answer.dto.AnswerResponse;
-import com.backend.fortunetoss.answer.dto.ResultQuestionResponse;
-import com.backend.fortunetoss.answer.dto.SubmitRequest;
+import com.backend.fortunetoss.answer.dto.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -112,11 +113,31 @@ public class AnswerController {
     /**
      * 질문에 대한 통계 데이터 조회
      */
-    @GetMapping("/answer/result/{questionId}")
-    public ResponseEntity<?> getAnswer(@PathVariable Long questionId) {
-        ResultQuestionResponse answers = answerService.calculateStatistics(questionId);
+    @GetMapping("/answer/result/{questionCustomId}")
+    public ResponseEntity<ResponseDto<?>> getAnswer(@PathVariable Long questionCustomId) {
 
-        return ResponseEntity.ok(answers);
+        ResultQuestionResponse resultQuestionResponse = answerService.calculateStatistics(questionCustomId);
+
+        return new ResponseEntity<>(
+                new ResponseDto<>("success", "user result success", resultQuestionResponse, null, 200),
+                HttpStatus.OK);
+    }
+
+
+    /**
+     * 정답자 조회
+     */
+    @GetMapping("/rightAnswer")
+    public ResponseEntity<ResponseDto<?>> getRightAnswer(@RequestBody RightAnswerRequest rightAnswerRequest, @PageableDefault(page = 0,size = 4) Pageable pageable) {
+
+        Slice<TotalResponse> rightAnswer = answerService.getRightAnswer(rightAnswerRequest, pageable);
+
+
+        // 정답자 조회 로직 호출
+
+        return new ResponseEntity<>(
+                new ResponseDto<>("success", "user rightAnswer success", rightAnswer, null, 200),
+                HttpStatus.OK);
     }
 
 

@@ -1,10 +1,8 @@
 package com.backend.fortunetoss.answer;
 
-import com.backend.fortunetoss.answer.dto.AnswerQuestionCustomResponse;
-import com.backend.fortunetoss.answer.dto.AnswerResponse;
-import com.backend.fortunetoss.answer.dto.ResultQuestionResponse;
-
-import java.util.Map;
+import com.backend.fortunetoss.answer.dto.*;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 public interface AnswerService {
 
@@ -15,4 +13,6 @@ public interface AnswerService {
     boolean isCorrectAnswer(Long questionId, String userAnswer);
 
     ResultQuestionResponse calculateStatistics(Long questionId);
+
+    Slice<TotalResponse> getRightAnswer(RightAnswerRequest rightAnswerRequest, Pageable pageable);
 }
