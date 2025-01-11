@@ -73,4 +73,26 @@ public class QuestionCustomService{
     }
 
 
+    public QuestionCustomResponseDTO updateQuestionCustom(Long questionCustomId, QuestionCustomRequestDTO questionCustomRequestDTO) {
+
+        QuestionCustom questionCustom = questionCustomRepository.findById(questionCustomId).orElseThrow();
+
+        questionCustom.updateQuestionCustom(
+                questionCustomRequestDTO.getTitle(),
+                questionCustomRequestDTO.getSelect1(),
+                questionCustomRequestDTO.getSelect2(),
+                questionCustomRequestDTO.getSelect3(),
+                questionCustomRequestDTO.getSelect4(),
+                questionCustomRequestDTO.getAnswer(),
+                questionCustomRequestDTO.getCard(),
+                questionCustomRequestDTO.getContent());
+
+
+        String domain = questionCustomRepository.findDomainById(questionCustomId);
+
+
+        return new QuestionCustomResponseDTO(questionCustomId,domain);
+
+
+    }
 }
