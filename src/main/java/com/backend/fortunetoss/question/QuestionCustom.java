@@ -50,5 +50,15 @@ public class QuestionCustom {
         this.card = card;
         this.content = content;
     }
+
+    public void updateQuestionCustom(String title, String select1, String select2, String select3, String select4, String answer, String card, String content) {
+            this.title = title;
+        this.select1 = select1;
+        this.select2 = select2;
+        this.select3 = select3;
+        this.select4 = select4;
+        this.answer = answer;
+        this.card = card;
+        this.content = content; }
 }
 

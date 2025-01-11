@@ -50,11 +50,13 @@ public class QuestionCustomController {
      * @return
      */
     @PatchMapping("/question/{questionCustomId}")
-    public ResponseEntity<ResponseDto<?>> updateQuestionCustom(@PathVariable Long questionCustomId) {
+    public ResponseEntity<ResponseDto<?>> updateQuestionCustom(@PathVariable Long questionCustomId,@RequestBody QuestionCustomRequestDTO questionCustomRequestDTO) {
+
+        QuestionCustomResponseDTO questionCustomResponseDTO = questionCustomService.updateQuestionCustom(questionCustomId, questionCustomRequestDTO);
 
 
         return new ResponseEntity<>(
-                new ResponseDto<>("success", "update QuestionCustom success ", null, null, 200),
+                new ResponseDto<>("success", "update QuestionCustom success ", questionCustomResponseDTO, null, 200),
                 HttpStatus.OK);
     }
 

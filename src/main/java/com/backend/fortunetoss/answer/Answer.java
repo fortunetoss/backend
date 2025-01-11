@@ -13,7 +13,7 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String answer; // 선택지 번호
+    private String answer; // 선택지 답변
     private String solver; // 작성자 이름
 
     @ManyToOne(fetch = FetchType.LAZY)

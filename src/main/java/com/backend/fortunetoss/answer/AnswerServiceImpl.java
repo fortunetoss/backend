@@ -1,17 +1,13 @@
 package com.backend.fortunetoss.answer;
 
-import com.backend.fortunetoss.answer.dto.AnswerQuestionCustomResponse;
-import com.backend.fortunetoss.answer.dto.AnswerResponse;
-import com.backend.fortunetoss.answer.dto.ResultQuestionResponse;
+import com.backend.fortunetoss.answer.dto.*;
 import com.backend.fortunetoss.question.QuestionCustom;
 import com.backend.fortunetoss.question.QuestionCustomRepository;
-import com.backend.fortunetoss.user.User;
-import com.backend.fortunetoss.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Map;
 
 @Service
 @Transactional
@@ -81,54 +77,62 @@ public class AnswerServiceImpl implements AnswerService {
 
 
     @Override
-    public ResultQuestionResponse calculateStatistics(Long questionId) {
+    public ResultQuestionResponse calculateStatistics(Long questionCustomId) {
+
         // 질문 조회
-        QuestionCustom question = questionCustomRepository.findById(questionId)
+        QuestionCustom questionCustom = questionCustomRepository.findById(questionCustomId)
                 .orElseThrow(() -> new IllegalArgumentException("질문을 찾을 수 없습니다."));
 
         // 전체 응답 수 계산
-        long totalResponses = answerRepository.countByQuestionCustomId(questionId);
 
-        // 정답 응답 수 계산
-        long correctResponses = answerRepository.countByQuestionCustomIdAndAnswer(questionId, question.getAnswer());
+        String title = questionCustom.getTitle();
+        String answer = questionCustom.getAnswer();
+
+        long total = answerRepository.countByQuestionCustomId(questionCustomId);
+
+        String select1 = questionCustom.getSelect1();
+        String select2 = questionCustom.getSelect2();
+        String select3 = questionCustom.getSelect3();
+        String select4 = questionCustom.getSelect4();
+
+        long select1cnt = answerRepository.countByQuestionCustomIdAndAnswer(questionCustomId, "1");
+        long select2cnt = answerRepository.countByQuestionCustomIdAndAnswer(questionCustomId, "2");
+        long select3cnt = answerRepository.countByQuestionCustomIdAndAnswer(questionCustomId, "3");
+        long select4cnt = answerRepository.countByQuestionCustomIdAndAnswer(questionCustomId, "4");
 
         // 정답률 계산
-        double accuracyRate = totalResponses > 0
-                ? ((double) correctResponses / totalResponses) * 100
-                : 0.0;
+        int select1per = select1cnt > 0
+                ? (int)(((double) select1cnt / total) * 100)
+                : 0;
 
-        // 각 선택지별 응답 수 계산
-        Map<String, Long> choiceCounts = Map.of(
-                question.getSelect1(), answerRepository.countByQuestionCustomIdAndAnswer(questionId, question.getSelect1()),
-                question.getSelect2(), answerRepository.countByQuestionCustomIdAndAnswer(questionId, question.getSelect2()),
-                question.getSelect3(), answerRepository.countByQuestionCustomIdAndAnswer(questionId, question.getSelect3()),
-                question.getSelect4(), answerRepository.countByQuestionCustomIdAndAnswer(questionId, question.getSelect4())
-        );
+        int select2per = select2cnt > 0
+                ? (int)(((double) select2cnt / total) * 100)
+                : 0;
 
-        // 결과 데이터 생성
-        Map<String, Object> result = Map.of(
-                "questionId", questionId,
-                "questionTitle", question.getTitle(),
-                "totalResponses", totalResponses,
-                "correctResponses", correctResponses,
-                "accuracyRate", accuracyRate,
-                "choices", choiceCounts
-        );
+        int select3per = select3cnt > 0
+                ? (int)(((double) select3cnt / total) * 100)
+                : 0;
 
-        return ResultQuestionResponse.builder()
-                .questionId(questionId)
-                .questionTitle(question.getTitle())
-                .totalResponses(totalResponses)
-                .correctResponses(correctResponses)
-                .accuracyRate(accuracyRate)
-                .choices(choiceCounts)
-                .build();
+        int select4per = select4cnt > 0
+                ? (int)(((double) select4cnt / total) * 100)
+                : 0;
+
+        return new ResultQuestionResponse(questionCustomId, title, answer, total, select1, select1cnt, select1per, select2, select2cnt, select2per, select3, select3cnt, select3per, select4, select4cnt, select4per);
     }
 
+    @Override
+    public Slice<TotalResponse> getRightAnswer(RightAnswerRequest rightAnswerRequest, Pageable pageable) {
 
+        Long questionCustomId = rightAnswerRequest.getQuestionCustomId();
+        String answer = rightAnswerRequest.getAnswer();
 
+        Slice<Answer> rightAnswer = answerRepository.getRightAnswer(questionCustomId, answer, pageable);
 
+        Slice<TotalResponse> rightAnswers = rightAnswer.map(answers -> new TotalResponse(answers.getAnswer(), answers.getSolver()));
 
+        return rightAnswers;
+
+    }
 
 
 }
