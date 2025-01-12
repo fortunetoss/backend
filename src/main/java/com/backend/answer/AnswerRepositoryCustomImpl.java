@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.backend.fortunetoss.answer.QAnswer.*;
+import static com.backend.answer.QAnswer.answer1;
 
 @Repository
 public class AnswerRepositoryCustomImpl implements AnswerRepositoryCustom {

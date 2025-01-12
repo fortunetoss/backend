@@ -3,8 +3,8 @@ package com.backend.question;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 
-import static com.backend.fortunetoss.luckypouch.QLuckyPouch.*;
-import static com.backend.fortunetoss.shape.QShape.*;
+import static com.backend.luckypouch.QLuckyPouch.luckyPouch;
+import static com.backend.shape.QShape.shape;
 
 public class QuestionCustomRepositoryImpl implements QuestionCustomInterRepository {
 

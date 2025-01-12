@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.backend.fortunetoss.luckypouch.QLuckyPouch.luckyPouch;
-import static com.backend.fortunetoss.shape.QShape.*;
+import static com.backend.luckypouch.QLuckyPouch.luckyPouch;
+import static com.backend.shape.QShape.shape;
 
 @Repository
 public class LuckyPouchCustomRepositoryImpl implements LuckyPouchCustomRepository{
