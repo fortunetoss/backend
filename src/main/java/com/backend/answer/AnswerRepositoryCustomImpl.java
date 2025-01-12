@@ -30,7 +30,7 @@ public class AnswerRepositoryCustomImpl implements AnswerRepositoryCustom {
                 .from(answer1)
                 .where(answer1.questionCustom.id.eq(QuestionCustomId))
                 .where(answer1.answer.eq(Answer))
-                .limit(pageable.getPageSize())
+                .limit(pageable.getPageSize() + 1) // +1 추가
                 .offset(pageable.getOffset())
                 .fetch();
 
