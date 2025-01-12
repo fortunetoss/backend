@@ -1,6 +1,7 @@
 package com.backend.oauth;
 
 import com.backend.fortunetoss.luckypouch.LuckyPouch;
+import com.backend.fortunetoss.luckypouch.LuckyPouchRepository;
 import com.backend.fortunetoss.shape.ShapeRepository;
 import com.backend.fortunetoss.user.Role;
 import com.backend.fortunetoss.user.User;
@@ -23,6 +24,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private final UserRepository userRepository;
     private final ShapeRepository shapeRepository;
+    private final LuckyPouchRepository luckyPouchRepository;
 
 
     @Override
@@ -65,6 +67,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                         .user(user)
                         .shape(shape)
                         .build();
+                luckyPouchRepository.save(luckyPouch);
             });
 
             UserDTO userDTO = new UserDTO();
