@@ -3,7 +3,7 @@ package com.backend.common.config;
 import com.backend.common.security.CustomLogoutFilter;
 import com.backend.common.security.JWTFilter;
 import com.backend.common.security.JWTUtil;
-import com.backend.common.security.RefreshRepository;
+import com.backend.common.security.refresh.RefreshRepository;
 import com.backend.common.security.oauth.CustomOAuth2UserService;
 import com.backend.common.security.oauth.CustomSuccessHandler;
 import com.backend.common.security.basic.LoginFilter;

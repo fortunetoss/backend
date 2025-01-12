@@ -1,8 +1,8 @@
 package com.backend.common.security.basic;
 
 import com.backend.common.security.JWTUtil;
-import com.backend.common.security.RefreshRepository;
-import com.backend.common.security.RefreshTokenInfo;
+import com.backend.common.security.refresh.RefreshRepository;
+import com.backend.common.security.refresh.RefreshTokenInfo;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;

@@ -1,8 +1,8 @@
 package com.backend.common.security.oauth;
 
 import com.backend.common.security.JWTUtil;
-import com.backend.common.security.RefreshTokenInfo;
-import com.backend.common.security.RefreshRepository;
+import com.backend.common.security.refresh.RefreshTokenInfo;
+import com.backend.common.security.refresh.RefreshRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

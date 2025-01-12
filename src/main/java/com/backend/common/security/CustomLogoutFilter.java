@@ -1,5 +1,6 @@
 package com.backend.common.security;
 
+import com.backend.common.security.refresh.RefreshRepository;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
