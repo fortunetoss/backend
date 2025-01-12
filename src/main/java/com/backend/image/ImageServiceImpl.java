@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -83,5 +82,13 @@ public class ImageServiceImpl implements ImageService {
             throw new IllegalArgumentException("File not found for S3 Key: " + s3Key);
         }
         return file;
+    }
+
+    /*
+     * 키워드 이미지URL 모두 가져오기
+     * card:표지, paper:덕담지, pouch:복주머니
+     * */
+    public List<String> getUrlsByKeyword(String keyword) {
+        return imageRepository.findUrlsByS3KeyContaining(keyword);
     }
 }
