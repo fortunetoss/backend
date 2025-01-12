@@ -113,7 +113,7 @@ public class AnswerController {
     /**
      * 질문에 대한 통계 데이터 조회
      */
-    @GetMapping("/answer/result/{questionCustomId}")
+    @GetMapping("/result/{questionCustomId}")
     public ResponseEntity<ResponseDto<?>> getAnswer(@PathVariable Long questionCustomId) {
 
         ResultQuestionResponse resultQuestionResponse = answerService.calculateStatistics(questionCustomId);

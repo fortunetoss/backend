@@ -1,7 +1,7 @@
-package com.backend.common;
+package com.backend.common.security;
 
-import com.backend.oauth.CustomOAuth2User;
-import com.backend.fortunetoss.user.UserDTO;
+import com.backend.common.security.oauth.CustomOAuth2User;
+import com.backend.user.UserDTO;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -39,7 +39,8 @@ public class JWTFilter extends OncePerRequestFilter {
             return;
         }
 
-        if (requestUri.matches("/") || requestUri.matches("/reissue")) {
+        if (requestUri.matches("/") || requestUri.matches("/reissue") ||
+                requestUri.startsWith("/api/answer")) {
 
             filterChain.doFilter(request, response);
             return;
