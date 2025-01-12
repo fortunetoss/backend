@@ -12,4 +12,6 @@ public interface ImageService {
     void deleteCardImage(Long id);
 
     List<UploadFile> getImages();
+
+    UploadFile getImageByS3Key(String s3Key);
 }

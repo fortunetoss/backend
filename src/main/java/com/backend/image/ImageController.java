@@ -32,4 +32,11 @@ public class ImageController {
         List<UploadFile> images = imageService.getImages();
         return ResponseEntity.ok(images);
     }
+
+    @GetMapping("/images/{s3Key}")
+    public ResponseEntity<UploadFile> getImageByS3Key(@PathVariable String s3Key) {
+        UploadFile uploadFile = imageService.getImageByS3Key(s3Key);
+
+        return ResponseEntity.ok(uploadFile);
+    }
 }

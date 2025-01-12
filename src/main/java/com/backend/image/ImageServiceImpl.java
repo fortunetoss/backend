@@ -3,6 +3,7 @@ package com.backend.image;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @Transactional
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ImageServiceImpl implements ImageService {
 
     private final AmazonS3 amazonS3;
@@ -25,8 +27,7 @@ public class ImageServiceImpl implements ImageService {
     private String bucket;
 
     public UploadFile uploadCardImage(MultipartFile file) throws IOException {
-        String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
-        String s3Key = "cards/" + fileName;
+        String s3Key = file.getOriginalFilename();
 
         // S3 업로드
         ObjectMetadata metadata = new ObjectMetadata();
@@ -71,5 +72,16 @@ public class ImageServiceImpl implements ImageService {
 
         // 데이터베이스에서 존재하는 파일의 데이터만 다시 조회
         return imageRepository.findByS3KeyIn(existingKeys);
+    }
+
+    @Override
+    public UploadFile getImageByS3Key(String s3Key) {
+        log.info("Fetching from repository with S3 Key: {}", s3Key);
+        UploadFile file = imageRepository.findByS3Key(s3Key);
+        if (file == null) {
+            log.warn("No file found for S3 Key: {}", s3Key);
+            throw new IllegalArgumentException("File not found for S3 Key: " + s3Key);
+        }
+        return file;
     }
 }
