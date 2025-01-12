@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.image;
+package com.backend.image;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

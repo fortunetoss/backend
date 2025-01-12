@@ -1,5 +1,6 @@
-package com.backend.fortunetoss.answer;
+package com.backend.answer;
 
+import com.backend.answer.dto.*;
 import com.backend.fortunetoss.answer.dto.*;
 import com.backend.question.QuestionCustom;
 import com.backend.question.QuestionCustomRepository;

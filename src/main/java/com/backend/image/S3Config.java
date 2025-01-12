@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.image;
+package com.backend.image;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

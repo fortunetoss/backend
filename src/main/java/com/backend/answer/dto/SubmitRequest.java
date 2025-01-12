@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.answer.dto;
+package com.backend.answer.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

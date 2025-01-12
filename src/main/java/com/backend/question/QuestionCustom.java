@@ -1,6 +1,6 @@
 package com.backend.question;
 
-import com.backend.fortunetoss.answer.Answer;
+import com.backend.answer.Answer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

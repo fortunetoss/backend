@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.answer;
+package com.backend.answer;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;

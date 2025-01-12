@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.answer;
+package com.backend.answer;
 
 import com.backend.question.QuestionCustom;
 import jakarta.persistence.*;

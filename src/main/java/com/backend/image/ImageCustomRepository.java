@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.image;
+package com.backend.image;
 
 import java.util.List;
 

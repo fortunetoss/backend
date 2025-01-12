@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.answer;
+package com.backend.answer;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
@@ -26,7 +26,7 @@ public class AnswerRepositoryCustomImpl implements AnswerRepositoryCustom {
     @Override
     public Slice<Answer> getRightAnswer(Long QuestionCustomId, String Answer, Pageable pageable) {
 
-        List<com.backend.fortunetoss.answer.Answer> answerList = queryFactory.select(answer1)
+        List<com.backend.answer.Answer> answerList = queryFactory.select(answer1)
                 .from(answer1)
                 .where(answer1.questionCustom.id.eq(QuestionCustomId))
                 .where(answer1.answer.eq(Answer))

@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.answer;
+package com.backend.answer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
