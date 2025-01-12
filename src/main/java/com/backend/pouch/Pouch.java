@@ -1,6 +1,6 @@
 package com.backend.pouch;
 
-import com.backend.fortunetoss.user.User;
+import com.backend.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

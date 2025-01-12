@@ -1,14 +1,13 @@
 package com.backend.pouch;
 
-import com.backend.fortunetoss.user.QUser;
-import com.backend.fortunetoss.user.User;
+import com.backend.user.User;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
 
-import static com.backend.fortunetoss.user.QUser.*;
-import static com.backend.pouch.QPouch.*;
-import static com.backend.pouch.QQuestion.*;
+import static com.backend.pouch.QPouch.pouch;
+import static com.backend.pouch.QQuestion.question;
+import static com.backend.user.QUser.user;
 
 @Repository
 public class CustomPouchRepositoryImpl implements CustomPouchRepository {

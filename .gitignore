@@ -40,5 +40,6 @@ out/
 ### Custom ###
 *.yml
 *.memo
+./src/test/
 
 .DS_Store
