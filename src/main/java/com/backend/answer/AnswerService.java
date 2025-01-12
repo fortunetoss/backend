@@ -1,7 +1,6 @@
 package com.backend.answer;
 
 import com.backend.answer.dto.*;
-import com.backend.fortunetoss.answer.dto.*;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
