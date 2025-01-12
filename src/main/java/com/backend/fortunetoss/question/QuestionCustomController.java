@@ -49,7 +49,7 @@ public class QuestionCustomController {
      * @param questionCustomId
      * @return
      */
-    @PatchMapping("/question/{questionCustomId}")
+    @PostMapping("/questions/{questionCustomId}")
     public ResponseEntity<ResponseDto<?>> updateQuestionCustom(@PathVariable Long questionCustomId,@RequestBody QuestionCustomRequestDTO questionCustomRequestDTO) {
 
         QuestionCustomResponseDTO questionCustomResponseDTO = questionCustomService.updateQuestionCustom(questionCustomId, questionCustomRequestDTO);

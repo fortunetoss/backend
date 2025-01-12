@@ -17,7 +17,7 @@ public class UserController {
     /**
      * 이름 변경
      */
-    @PatchMapping("/name")
+    @PostMapping("/name")
     public ResponseEntity<ResponseDto<?>> updateName(
             @RequestBody UserUpdateRequest request) {
             // 이름 변경 로직 호출
