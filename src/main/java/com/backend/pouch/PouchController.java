@@ -1,7 +1,7 @@
 package com.backend.pouch;
 
 
-import com.backend.common.ResponseDto;
+import com.backend.common.response.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.backend.common;
+package com.backend.common.security;
 
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Value;

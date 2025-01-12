@@ -1,12 +1,12 @@
 package com.backend.common.config;
 
-import com.backend.common.CustomLogoutFilter;
-import com.backend.common.JWTFilter;
-import com.backend.common.JWTUtil;
-import com.backend.common.RefreshRepository;
-import com.backend.oauth.CustomOAuth2UserService;
-import com.backend.oauth.CustomSuccessHandler;
-import com.backend.oauth.LoginFilter;
+import com.backend.common.security.CustomLogoutFilter;
+import com.backend.common.security.JWTFilter;
+import com.backend.common.security.JWTUtil;
+import com.backend.common.security.RefreshRepository;
+import com.backend.common.security.oauth.CustomOAuth2UserService;
+import com.backend.common.security.oauth.CustomSuccessHandler;
+import com.backend.common.security.basic.LoginFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

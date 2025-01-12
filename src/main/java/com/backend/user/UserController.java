@@ -1,6 +1,6 @@
 package com.backend.user;
 
-import com.backend.common.ResponseDto;
+import com.backend.common.response.ResponseDto;
 import com.backend.user.dto.UserUpdateResponse;
 import com.backend.user.dto.UserUpdateRequest;
 import lombok.RequiredArgsConstructor;

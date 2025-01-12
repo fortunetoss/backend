@@ -1,14 +1,13 @@
-package com.backend.oauth;
+package com.backend.common.security.oauth;
 
-import com.backend.common.JWTUtil;
-import com.backend.common.RefreshTokenInfo;
-import com.backend.common.RefreshRepository;
+import com.backend.common.security.JWTUtil;
+import com.backend.common.security.RefreshTokenInfo;
+import com.backend.common.security.RefreshRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;

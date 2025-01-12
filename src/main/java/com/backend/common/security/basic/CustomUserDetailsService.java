@@ -1,4 +1,4 @@
-package com.backend.oauth;
+package com.backend.common.security.basic;
 
 import com.backend.user.User;
 import com.backend.user.UserDTO;

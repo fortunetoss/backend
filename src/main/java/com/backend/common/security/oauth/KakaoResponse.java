@@ -1,4 +1,4 @@
-package com.backend.oauth;
+package com.backend.common.security.oauth;
 
 import lombok.extern.slf4j.Slf4j;
 

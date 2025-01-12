@@ -1,6 +1,6 @@
 package com.backend.fortunetoss.answer;
 
-import com.backend.common.ResponseDto;
+import com.backend.common.response.ResponseDto;
 import com.backend.fortunetoss.answer.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

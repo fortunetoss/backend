@@ -1,4 +1,4 @@
-package com.backend.common;
+package com.backend.common.security;
 
 import jakarta.persistence.*;
 import lombok.Getter;

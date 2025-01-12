@@ -2,7 +2,7 @@ package com.backend.user;
 
 import com.backend.user.dto.UserUpdateResponse;
 import com.backend.user.dto.UserUpdateRequest;
-import com.backend.oauth.CustomOAuth2User;
+import com.backend.common.security.oauth.CustomOAuth2User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,8 +1,8 @@
-package com.backend.oauth;
+package com.backend.common.security.oauth;
 
 import java.util.Map;
 
-public class GoogleResponse implements OAuth2Response{
+public class GoogleResponse implements OAuth2Response {
 
     private final Map<String, Object> attribute;
 

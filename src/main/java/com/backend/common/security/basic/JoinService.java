@@ -1,4 +1,4 @@
-package com.backend.common;
+package com.backend.common.security.basic;
 
 import com.backend.luckypouch.LuckyPouch;
 import com.backend.luckypouch.LuckyPouchRepository;

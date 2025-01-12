@@ -1,6 +1,6 @@
 package com.backend.luckypouch;
 
-import com.backend.common.ResponseDto;
+import com.backend.common.response.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;

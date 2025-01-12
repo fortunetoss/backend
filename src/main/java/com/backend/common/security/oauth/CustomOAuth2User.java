@@ -1,21 +1,27 @@
-package com.backend.oauth;
+package com.backend.common.security.oauth;
 
 import com.backend.user.UserDTO;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
-public class CustomUserDetails implements UserDetails {
+public class CustomOAuth2User implements OAuth2User {
 
     private final UserDTO userDTO;
 
-    public CustomUserDetails(UserDTO userDTO) {
+    public CustomOAuth2User(UserDTO userDTO) {
 
         this.userDTO = userDTO;
     }
 
+    @Override
+    public Map<String, Object> getAttributes() {
+
+        return null;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -35,38 +41,18 @@ public class CustomUserDetails implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
+    public String getName() {
 
-        return userDTO.getPassword();
+        return userDTO.getName();
     }
 
-    @Override
     public String getUsername() {
 
         return userDTO.getUsername();
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
+    public boolean isNewUser() {
 
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-
-        return true;
+        return userDTO.isNewUser();
     }
 }

@@ -1,4 +1,4 @@
-package com.backend.oauth;
+package com.backend.common.security.oauth;
 
 public interface OAuth2Response {
 

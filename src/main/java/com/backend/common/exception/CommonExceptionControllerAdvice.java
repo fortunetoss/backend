@@ -1,4 +1,4 @@
-package com.backend.common;
+package com.backend.common.exception;
 
 
 import org.springframework.http.HttpStatus;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class UserControllerAdvice {
+public class CommonExceptionControllerAdvice {
 
     // MethodArgumentNotValidException 처리
     @ExceptionHandler(MethodArgumentNotValidException.class)
