@@ -1,8 +1,6 @@
-package com.backend.fortunetoss.question;
+package com.backend.question;
 
 import com.backend.common.ResponseDto;
-import com.backend.fortunetoss.answer.dto.AnswerQuestionCustomResponse;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

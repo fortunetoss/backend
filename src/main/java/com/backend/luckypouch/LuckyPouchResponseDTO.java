@@ -1,6 +1,5 @@
-package com.backend.fortunetoss.luckypouch;
+package com.backend.luckypouch;
 
-import com.backend.fortunetoss.question.QuestionCustom;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

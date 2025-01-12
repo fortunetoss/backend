@@ -1,7 +1,7 @@
 package com.backend.pouch;
 
-import com.backend.fortunetoss.user.User;
-import com.backend.fortunetoss.user.UserService;
+import com.backend.user.User;
+import com.backend.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

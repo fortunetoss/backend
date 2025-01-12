@@ -1,7 +1,7 @@
-package com.backend.fortunetoss.user;
+package com.backend.user;
 
-import com.backend.fortunetoss.user.dto.UserUpdateResponse;
-import com.backend.fortunetoss.user.dto.UserUpdateRequest;
+import com.backend.user.dto.UserUpdateResponse;
+import com.backend.user.dto.UserUpdateRequest;
 import com.backend.oauth.CustomOAuth2User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

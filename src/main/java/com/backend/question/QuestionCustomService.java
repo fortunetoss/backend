@@ -1,11 +1,11 @@
-package com.backend.fortunetoss.question;
+package com.backend.question;
 
-import com.backend.fortunetoss.luckypouch.LuckyPouch;
-import com.backend.fortunetoss.luckypouch.LuckyPouchRepository;
-import com.backend.fortunetoss.shape.Shape;
-import com.backend.fortunetoss.shape.ShapeRepository;
-import com.backend.fortunetoss.user.User;
-import com.backend.fortunetoss.user.UserService;
+import com.backend.luckypouch.LuckyPouch;
+import com.backend.luckypouch.LuckyPouchRepository;
+import com.backend.shape.Shape;
+import com.backend.shape.ShapeRepository;
+import com.backend.user.User;
+import com.backend.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

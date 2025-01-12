@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.shape;
+package com.backend.shape;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

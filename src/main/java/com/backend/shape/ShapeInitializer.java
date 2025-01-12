@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.shape;
+package com.backend.shape;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;

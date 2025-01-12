@@ -1,12 +1,8 @@
-package com.backend.fortunetoss.luckypouch;
+package com.backend.luckypouch;
 
-import com.backend.fortunetoss.shape.QShape;
-import com.backend.fortunetoss.user.User;
-import com.querydsl.core.types.Order;
+import com.backend.user.User;
 import com.querydsl.core.types.OrderSpecifier;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.CaseBuilder;
-import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +14,6 @@ import java.util.List;
 
 import static com.backend.fortunetoss.luckypouch.QLuckyPouch.luckyPouch;
 import static com.backend.fortunetoss.shape.QShape.*;
-import static com.backend.fortunetoss.user.QUser.user;
 
 @Repository
 public class LuckyPouchCustomRepositoryImpl implements LuckyPouchCustomRepository{

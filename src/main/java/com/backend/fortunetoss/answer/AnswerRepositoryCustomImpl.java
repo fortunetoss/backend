@@ -1,6 +1,5 @@
 package com.backend.fortunetoss.answer;
 
-import com.backend.fortunetoss.luckypouch.LuckyPouch;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.domain.Pageable;

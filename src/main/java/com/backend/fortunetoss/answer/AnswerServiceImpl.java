@@ -1,8 +1,8 @@
 package com.backend.fortunetoss.answer;
 
 import com.backend.fortunetoss.answer.dto.*;
-import com.backend.fortunetoss.question.QuestionCustom;
-import com.backend.fortunetoss.question.QuestionCustomRepository;
+import com.backend.question.QuestionCustom;
+import com.backend.question.QuestionCustomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;

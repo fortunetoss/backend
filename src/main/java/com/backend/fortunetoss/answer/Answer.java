@@ -1,6 +1,6 @@
 package com.backend.fortunetoss.answer;
 
-import com.backend.fortunetoss.question.QuestionCustom;
+import com.backend.question.QuestionCustom;
 import jakarta.persistence.*;
 import lombok.*;
 

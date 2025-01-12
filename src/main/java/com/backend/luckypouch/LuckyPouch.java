@@ -1,8 +1,8 @@
-package com.backend.fortunetoss.luckypouch;
+package com.backend.luckypouch;
 
-import com.backend.fortunetoss.question.QuestionCustom;
-import com.backend.fortunetoss.shape.Shape;
-import com.backend.fortunetoss.user.User;
+import com.backend.question.QuestionCustom;
+import com.backend.shape.Shape;
+import com.backend.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

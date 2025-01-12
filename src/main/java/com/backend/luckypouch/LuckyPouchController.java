@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.luckypouch;
+package com.backend.luckypouch;
 
 import com.backend.common.ResponseDto;
 import lombok.RequiredArgsConstructor;

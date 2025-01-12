@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.question;
+package com.backend.question;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

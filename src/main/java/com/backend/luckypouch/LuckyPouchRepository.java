@@ -1,7 +1,7 @@
-package com.backend.fortunetoss.luckypouch;
+package com.backend.luckypouch;
 
-import com.backend.fortunetoss.shape.Shape;
-import com.backend.fortunetoss.user.User;
+import com.backend.shape.Shape;
+import com.backend.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.user.dto;
+package com.backend.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

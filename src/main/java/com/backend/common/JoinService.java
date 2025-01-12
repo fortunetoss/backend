@@ -1,11 +1,11 @@
 package com.backend.common;
 
-import com.backend.fortunetoss.luckypouch.LuckyPouch;
-import com.backend.fortunetoss.luckypouch.LuckyPouchRepository;
-import com.backend.fortunetoss.shape.ShapeRepository;
-import com.backend.fortunetoss.user.Role;
-import com.backend.fortunetoss.user.User;
-import com.backend.fortunetoss.user.UserRepository;
+import com.backend.luckypouch.LuckyPouch;
+import com.backend.luckypouch.LuckyPouchRepository;
+import com.backend.shape.ShapeRepository;
+import com.backend.user.Role;
+import com.backend.user.User;
+import com.backend.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

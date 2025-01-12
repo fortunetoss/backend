@@ -1,13 +1,9 @@
-package com.backend.fortunetoss.question;
+package com.backend.question;
 
-import com.backend.fortunetoss.luckypouch.QLuckyPouch;
-import com.backend.fortunetoss.shape.QShape;
-import com.backend.pouch.QQuestion;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 
 import static com.backend.fortunetoss.luckypouch.QLuckyPouch.*;
-import static com.backend.fortunetoss.question.QQuestionCustom.*;
 import static com.backend.fortunetoss.shape.QShape.*;
 
 public class QuestionCustomRepositoryImpl implements QuestionCustomInterRepository {

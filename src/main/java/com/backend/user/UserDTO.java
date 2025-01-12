@@ -1,4 +1,4 @@
-package com.backend.fortunetoss.user;
+package com.backend.user;
 
 import lombok.Getter;
 import lombok.Setter;

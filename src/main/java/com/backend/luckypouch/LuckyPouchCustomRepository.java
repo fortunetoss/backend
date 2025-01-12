@@ -1,10 +1,8 @@
-package com.backend.fortunetoss.luckypouch;
+package com.backend.luckypouch;
 
-import com.backend.fortunetoss.user.User;
+import com.backend.user.User;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
-
-import java.util.List;
 
 public interface LuckyPouchCustomRepository {
     public Slice<LuckyPouch> findUsersLuckyPouches(User finduser, Pageable pageable);

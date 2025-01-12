@@ -1,7 +1,6 @@
-package com.backend.fortunetoss.question;
+package com.backend.question;
 
 import com.backend.fortunetoss.answer.Answer;
-import com.backend.fortunetoss.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
