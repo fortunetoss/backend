@@ -1,5 +1,7 @@
 package com.backend.image;
 
+import com.backend.image.dto.ImageResponseDto;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -20,9 +22,9 @@ public class ImageCustomRepositoryImpl implements ImageCustomRepository{
      * 키워드가 존재하는 이미지는 모두 가져온다.
      * */
     @Override
-    public List<String> findUrlsByS3KeyContaining(String keyword) {
+    public List<ImageResponseDto> findUrlsByS3KeyContaining(String keyword) {
         return jpaQueryFactory
-                .select(uploadFile.url)
+                .select(Projections.constructor(ImageResponseDto.class, uploadFile.url, uploadFile.s3Key))
                 .from(uploadFile)
                 .where(uploadFile.s3Key.containsIgnoreCase(keyword))
                 .fetch();

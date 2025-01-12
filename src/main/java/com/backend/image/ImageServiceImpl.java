@@ -2,6 +2,7 @@ package com.backend.image;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.backend.image.dto.ImageResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -88,7 +89,7 @@ public class ImageServiceImpl implements ImageService {
      * 키워드 이미지URL 모두 가져오기
      * card:표지, paper:덕담지, pouch:복주머니
      * */
-    public List<String> getUrlsByKeyword(String keyword) {
+    public List<ImageResponseDto> getUrlsByKeyword(String keyword) {
         return imageRepository.findUrlsByS3KeyContaining(keyword);
     }
 }

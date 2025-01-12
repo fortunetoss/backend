@@ -1,5 +1,6 @@
 package com.backend.image;
 
+import com.backend.image.dto.ImageResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,9 +55,9 @@ public class ImageController {
      * card:표지, paper:덕담지, pouch:복주머니
      * */
     @GetMapping("/images/search")
-    public ResponseEntity<List<String>> getUrlsByKeyword(@RequestParam String keyword) {
-        List<String> urls = imageService.getUrlsByKeyword(keyword);
-        return ResponseEntity.ok(urls);
+    public ResponseEntity<List<ImageResponseDto>> getUrlsByKeyword(@RequestParam String keyword) {
+        List<ImageResponseDto> result = imageService.getUrlsByKeyword(keyword);
+        return ResponseEntity.ok(result);
     }
 
 

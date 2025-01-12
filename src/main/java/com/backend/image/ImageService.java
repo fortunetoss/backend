@@ -1,6 +1,7 @@
 package com.backend.image;
 
 
+import com.backend.image.dto.ImageResponseDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -15,5 +16,5 @@ public interface ImageService {
 
     UploadFile getImageByS3Key(String s3Key);
 
-    List<String> getUrlsByKeyword(String keyword);
+    List<ImageResponseDto> getUrlsByKeyword(String keyword);
 }
