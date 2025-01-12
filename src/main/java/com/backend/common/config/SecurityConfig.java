@@ -1,5 +1,9 @@
-package com.backend.common;
+package com.backend.common.config;
 
+import com.backend.common.CustomLogoutFilter;
+import com.backend.common.JWTFilter;
+import com.backend.common.JWTUtil;
+import com.backend.common.RefreshRepository;
 import com.backend.oauth.CustomOAuth2UserService;
 import com.backend.oauth.CustomSuccessHandler;
 import com.backend.oauth.LoginFilter;
