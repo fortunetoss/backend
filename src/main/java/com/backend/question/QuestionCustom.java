@@ -23,12 +23,12 @@ public class QuestionCustom {
     @Column(name = "question_custom_id")
     private Long id;
 
-    private String title;
+    private String title; // 질문
     private String select1;
     private String select2;
     private String select3;
     private String select4;
-    private String answer;
+    private String answer; // 정잡
     private String card;
     private String content; // 덕담
     private LocalDateTime createdAt;

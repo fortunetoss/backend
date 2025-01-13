@@ -42,6 +42,7 @@ public class ImageController {
 
     /*
     * 이미지 단건 조회
+    * 선택한 복주머니의 s3Key로 이미지를 보여줍니다.
      */
     @GetMapping("/images/{s3Key}")
     public ResponseEntity<ImageResponseDto> getImageByS3Key(@PathVariable String s3Key) {

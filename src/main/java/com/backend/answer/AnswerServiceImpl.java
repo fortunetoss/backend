@@ -9,6 +9,9 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -132,6 +135,17 @@ public class AnswerServiceImpl implements AnswerService {
 
         return rightAnswers;
 
+    }
+
+    @Override
+    public List<TotalResponse> getWrongAnswer(Long questionCustomId) {
+        // Repository에서 오답 엔티티 목록 가져오기
+        List<Answer> answers = answerRepository.getWrongAnswer(questionCustomId);
+
+        // TotalResponse로 변환
+        return answers.stream()
+                .map(answer -> new TotalResponse(answer.getAnswer(), answer.getSolver()))
+                .collect(Collectors.toList());
     }
 
 

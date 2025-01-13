@@ -1,6 +1,7 @@
 package com.backend.answer;
 
 import com.backend.question.QuestionCustom;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 

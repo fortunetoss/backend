@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -140,5 +141,14 @@ public class AnswerController {
                 HttpStatus.OK);
     }
 
+    /**
+     * 오답자 조회
+     * 우선 무한 스크롤 없이 리스트로 작성하였습니다.
+     */
+    @GetMapping("/wrongAnswer")
+    public ResponseEntity<List<TotalResponse>> getWrongAnswers(@RequestParam Long questionCustomId) {
+        List<TotalResponse> wrongAnswer = answerService.getWrongAnswer(questionCustomId);
+        return ResponseEntity.ok(wrongAnswer);
+    }
 
 }

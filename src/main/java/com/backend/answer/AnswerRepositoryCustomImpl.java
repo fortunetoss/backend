@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.backend.answer.QAnswer.answer1;
+import static com.backend.question.QQuestionCustom.questionCustom;
 
 @Repository
 public class AnswerRepositoryCustomImpl implements AnswerRepositoryCustom {
@@ -41,4 +42,18 @@ public class AnswerRepositoryCustomImpl implements AnswerRepositoryCustom {
 
         return new SliceImpl<>(answerList, pageable, hasNext);
     }
+
+    @Override
+    public List<Answer> getWrongAnswer(Long questionCustomId) {
+        return queryFactory
+                .selectFrom(answer1)
+                .join(answer1.questionCustom, questionCustom)
+                .where(
+                        questionCustom.id.eq(questionCustomId),
+                        answer1.answer.ne(questionCustom.answer) // 정답과 다른 응답 필터링
+                )
+                .fetch();
+    }
+
+
 }
