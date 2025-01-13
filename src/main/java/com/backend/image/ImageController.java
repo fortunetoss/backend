@@ -44,10 +44,10 @@ public class ImageController {
     * 이미지 단건 조회
      */
     @GetMapping("/images/{s3Key}")
-    public ResponseEntity<UploadFile> getImageByS3Key(@PathVariable String s3Key) {
-        UploadFile uploadFile = imageService.getImageByS3Key(s3Key);
+    public ResponseEntity<ImageResponseDto> getImageByS3Key(@PathVariable String s3Key) {
+        ImageResponseDto imageResponseDto = imageService.getImageByS3Key(s3Key);
 
-        return ResponseEntity.ok(uploadFile);
+        return ResponseEntity.ok(imageResponseDto);
     }
 
     /*

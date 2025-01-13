@@ -75,14 +75,12 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public UploadFile getImageByS3Key(String s3Key) {
-        log.info("Fetching from repository with S3 Key: {}", s3Key);
-        UploadFile file = imageRepository.findByS3Key(s3Key);
-        if (file == null) {
-            log.warn("No file found for S3 Key: {}", s3Key);
-            throw new IllegalArgumentException("File not found for S3 Key: " + s3Key);
-        }
-        return file;
+    public ImageResponseDto getImageByS3Key(String s3Key) {
+
+         UploadFile uploadFile = imageRepository.findByS3Key(s3Key)
+                 .orElseThrow(() -> new IllegalArgumentException("File not found for S3 Key: " + s3Key));
+
+        return ImageResponseDto.fromEntity(uploadFile);
     }
 
     /*

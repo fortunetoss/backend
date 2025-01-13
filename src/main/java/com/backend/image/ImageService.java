@@ -14,7 +14,7 @@ public interface ImageService {
 
     List<UploadFile> getImages();
 
-    UploadFile getImageByS3Key(String s3Key);
+    ImageResponseDto getImageByS3Key(String s3Key);
 
     List<ImageResponseDto> getUrlsByKeyword(String keyword);
 }
