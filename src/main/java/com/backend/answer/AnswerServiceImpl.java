@@ -62,7 +62,7 @@ public class AnswerServiceImpl implements AnswerService {
                 isCorrect,
                 questionCustom.getContent(), // 덕담 포함
                 questionCustom.getTitle(),
-                userAnswer,
+                questionCustom.getAnswer(),
                 solverName
         );
     }

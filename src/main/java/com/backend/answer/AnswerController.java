@@ -59,7 +59,7 @@ public class AnswerController {
 
 
     /**
-     * 사용자가 질문에 대한 답변 제출
+     * 응답자가 질문에 대한 답변 제출
      */
     @PostMapping("/answer/{questionId}")
     public ResponseEntity<?> submitAnswer(
