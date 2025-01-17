@@ -8,4 +8,6 @@ public interface AnswerRepository extends JpaRepository<Answer, Long>, AnswerRep
     Long countByQuestionCustomIdAndAnswer(Long questionId, String select1);
 
     long countByQuestionCustomId(Long questionId);
+
+    void deleteByQuestionCustomId(Long id);
 }
