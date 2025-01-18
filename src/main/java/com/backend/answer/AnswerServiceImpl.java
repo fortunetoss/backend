@@ -148,5 +148,24 @@ public class AnswerServiceImpl implements AnswerService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public AnswerResultResponse getAnswerResult(Long answerId) {
+        // 답변 조회
+        Answer answer = answerRepository.findById(answerId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 ID의 응답을 찾을 수 없습니다."));
+
+        // 정답 비교 로직
+        boolean isCorrect = answer.getQuestionCustom().getAnswer().equals(answer.getAnswer());
+
+        // DTO로 변환하여 반환
+        return new AnswerResultResponse(
+                answer.getId(),
+                isCorrect,
+                answer.getQuestionCustom().getTitle(),
+                answer.getQuestionCustom().getAnswer(),
+                answer.getAnswer(),
+                answer.getSolver()
+        );
+    }
 
 }

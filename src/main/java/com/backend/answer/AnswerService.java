@@ -19,4 +19,6 @@ public interface AnswerService {
     Slice<TotalResponse> getRightAnswer(RightAnswerRequest rightAnswerRequest, Pageable pageable);
 
     List<TotalResponse> getWrongAnswer(Long questionCustomId);
+
+    AnswerResultResponse getAnswerResult(Long answerId);
 }

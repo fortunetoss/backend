@@ -29,7 +29,7 @@ public class QuestionCustom {
     private String select3;
     private String select4;
     private String answer; // 정잡
-    private String card;
+    private String card; // 카드 이미지 쌍
     private String content; // 덕담
     private LocalDateTime createdAt;
 
