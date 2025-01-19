@@ -128,7 +128,7 @@ public class AnswerController {
     /**
      * 정답자 조회
      */
-    @GetMapping("/rightAnswer")
+    @PostMapping("/rightAnswer")
     public ResponseEntity<ResponseDto<?>> getRightAnswer(@RequestBody RightAnswerRequest rightAnswerRequest, @PageableDefault(page = 0,size = 4) Pageable pageable) {
 
         Slice<TotalResponse> rightAnswer = answerService.getRightAnswer(rightAnswerRequest, pageable);
@@ -145,7 +145,7 @@ public class AnswerController {
      * 오답자 조회
      * 우선 무한 스크롤 없이 리스트로 작성하였습니다.
      */
-    @GetMapping("/wrongAnswer")
+    @PostMapping("/wrongAnswer")
     public ResponseEntity<List<TotalResponse>> getWrongAnswers(@RequestParam Long questionCustomId) {
         List<TotalResponse> wrongAnswer = answerService.getWrongAnswer(questionCustomId);
         return ResponseEntity.ok(wrongAnswer);
