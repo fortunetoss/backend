@@ -151,4 +151,24 @@ public class AnswerController {
         return ResponseEntity.ok(wrongAnswer);
     }
 
+    /**
+     * 응답자 결과 조회
+     * 질문자에게 공유하기 위한 answerId로 응답결과를 가져옵니다.
+     */
+    @GetMapping("/answer/result/{answerId}")
+    public ResponseEntity<ResponseDto<?>> getAnswerResult(@PathVariable Long answerId) {
+        AnswerResultResponse result = answerService.getAnswerResult(answerId);
+
+        // 성공 응답 생성
+        ResponseDto<AnswerResultResponse> response = new ResponseDto<>(
+                "success",
+                "응답 결과가 성공적으로 조회되었습니다.",
+                result,
+                null,
+                200
+        );
+
+        return ResponseEntity.ok(response);
+    }
+
 }
