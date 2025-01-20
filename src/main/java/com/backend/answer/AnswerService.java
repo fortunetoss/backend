@@ -5,6 +5,7 @@ import com.backend.luckypouch.LuckyPouch;
 import com.backend.luckypouch.LuckyPouchRepository;
 import com.backend.question.QuestionCustom;
 import com.backend.question.QuestionCustomRepository;
+import com.backend.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -58,6 +59,26 @@ public class AnswerService {
 
         // 답변 저장
         Answer save = answerRepository.save(answer);
+
+        long count = answerRepository.countByQuestionCustomId(questionCustomId);
+
+
+        if(count==1) {
+
+            LuckyPouch luckyPouch = luckyPouchRepository.findUsersLuckyPouches(questionCustomId);
+
+            String domain = luckyPouch.getShape().getDomain();
+
+            User user = luckyPouch.getUser();
+
+            LuckyPouch newLuckyPouch = LuckyPouch.builder()
+                    .user(user)
+                    .shape(luckyPouch.getShape())
+                    .build();
+
+            luckyPouchRepository.save(newLuckyPouch);
+        }
+
 
         // 정답 비교 로직
         boolean isCorrect = questionCustom.getAnswer().equals(userAnswer);
