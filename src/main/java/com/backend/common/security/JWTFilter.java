@@ -40,7 +40,7 @@ public class JWTFilter extends OncePerRequestFilter {
         }
 
         if (requestUri.matches("/") || requestUri.matches("/reissue") ||
-                requestUri.startsWith("/api/answer")) {
+                requestUri.startsWith("/api/answer") || requestUri.startsWith("/api/users/validate")){
 
             filterChain.doFilter(request, response);
             return;

@@ -109,6 +109,7 @@ public class SecurityConfig {
                         .requestMatchers("/login/**", "/", "/join").permitAll()
                         .requestMatchers("/oauth/**").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
+                        .requestMatchers("/api/users/validate").permitAll()
                         .anyRequest().authenticated());
 
         //세션 설정 : STATELESS
