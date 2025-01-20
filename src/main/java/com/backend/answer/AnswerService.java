@@ -42,9 +42,10 @@ public class AnswerService {
         );
     }
 
-    public AnswerResponse save(Long questionId, String userAnswer, String solverName) {
+    public AnswerResponse save(Long questionCustomId, String userAnswer, String solverName) {
         // 질문지를 데이터베이스에서 조회
-        QuestionCustom questionCustom = questionCustomRepository.findById(questionId)
+
+        QuestionCustom questionCustom = questionCustomRepository.findById(questionCustomId)
                 .orElseThrow(() -> new IllegalArgumentException("질문을 찾을 수 없습니다."));
 
         // 사용자의 답변 생성 및 저장
@@ -55,18 +56,17 @@ public class AnswerService {
 
         answer.updateQuestionCustom(questionCustom);
 
+        // 답변 저장
+        Answer save = answerRepository.save(answer);
+
         // 정답 비교 로직
         boolean isCorrect = questionCustom.getAnswer().equals(userAnswer);
 
-        // 답변 저장
-        answerRepository.save(answer);
-
         return new AnswerResponse(answer.getId(),
+                questionCustom.getCard(),
                 isCorrect,
-                questionCustom.getContent(), // 덕담 포함
-                questionCustom.getTitle(),
-                userAnswer,
-                solverName
+                questionCustom.getContent(),
+                questionCustom.getAnswer()
         );
     }
 
