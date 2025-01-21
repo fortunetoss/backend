@@ -25,12 +25,12 @@ public class AnswerRepositoryCustomImpl implements AnswerRepositoryCustom {
 
 
     @Override
-    public Slice<Answer> getRightAnswer(Long QuestionCustomId, String Answer, Pageable pageable) {
+    public Slice<Answer> getRightAnswer(Long QuestionCustomId, String answer, Pageable pageable) {
 
         List<com.backend.answer.Answer> answerList = queryFactory.select(answer1)
                 .from(answer1)
                 .where(answer1.questionCustom.id.eq(QuestionCustomId))
-                .where(answer1.answer.eq(Answer))
+                .where(answer1.answer.eq(answer))
                 .limit(pageable.getPageSize() + 1) // +1 추가
                 .offset(pageable.getOffset())
                 .fetch();
@@ -44,16 +44,27 @@ public class AnswerRepositoryCustomImpl implements AnswerRepositoryCustom {
     }
 
     @Override
-    public List<Answer> getWrongAnswer(Long questionCustomId) {
-        return queryFactory
+    public Slice<Answer> getWrongAnswer(Long questionCustomId, String answer, Pageable pageable) {
+        List<Answer> answerList = queryFactory
                 .selectFrom(answer1)
                 .join(answer1.questionCustom, questionCustom)
                 .where(
                         questionCustom.id.eq(questionCustomId),
                         answer1.answer.ne(questionCustom.answer) // 정답과 다른 응답 필터링
                 )
+                .limit(pageable.getPageSize() + 1)
+                .offset(pageable.getOffset())
                 .fetch();
+
+        boolean hasNext = answerList.size() > pageable.getPageSize();
+        if (hasNext) {
+            answerList.remove(pageable.getPageSize());
+        }
+
+        return new SliceImpl<>(answerList, pageable, hasNext);
     }
+
+
 
 
 }

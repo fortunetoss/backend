@@ -158,14 +158,18 @@ public class AnswerService {
 
     }
 
-    public List<TotalResponse> getWrongAnswer(Long questionCustomId) {
+    public Slice<TotalResponse> getWrongAnswer(RightAnswerRequest rightAnswerRequest, Pageable pageable) {
+
+        Long questionCustomId = rightAnswerRequest.getQuestionCustomId();
+        String answer = rightAnswerRequest.getAnswer();
+
         // Repository에서 오답 엔티티 목록 가져오기
-        List<Answer> answers = answerRepository.getWrongAnswer(questionCustomId);
+        Slice<Answer> wrongAnswer = answerRepository.getWrongAnswer(questionCustomId, answer, pageable);
 
         // TotalResponse로 변환
-        return answers.stream()
-                .map(answer -> new TotalResponse(answer.getAnswer(), answer.getSolver()))
-                .collect(Collectors.toList());
+        Slice<TotalResponse> rightAnswers = wrongAnswer.map(answers -> new TotalResponse(answers.getAnswer(), answers.getSolver()));
+
+        return rightAnswers;
     }
 
     public AnswerResultResponse getAnswerResult(Long answerId) {
