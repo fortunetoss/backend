@@ -180,9 +180,11 @@ public class AnswerService {
 
         String publisherAnswer = answer.getQuestionCustom().getAnswer();
 
+        String title = answer.getQuestionCustom().getTitle();
+
         // DTO로 변환하여 반환
         return new AnswerResultResponse(
-                answerId,correct,answer.getQuestionCustom().getCard(),answer.getQuestionCustom().getContent(),publisherAnswer
+                answerId,correct,answer.getQuestionCustom().getCard(),answer.getQuestionCustom().getContent(),publisherAnswer,title
 
         );
     }
