@@ -172,18 +172,18 @@ public class AnswerService {
         // 답변 조회
         Answer answer = answerRepository.findById(answerId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 ID의 응답을 찾을 수 없습니다."));
+        
+        
 
         // 정답 비교 로직
-        boolean isCorrect = answer.getQuestionCustom().getAnswer().equals(answer.getAnswer());
+        boolean correct = answer.getQuestionCustom().getAnswer().equals(answer.getAnswer());
+
+        String publisherAnswer = answer.getQuestionCustom().getAnswer();
 
         // DTO로 변환하여 반환
         return new AnswerResultResponse(
-                answer.getId(),
-                isCorrect,
-                answer.getQuestionCustom().getTitle(),
-                answer.getQuestionCustom().getAnswer(),
-                answer.getAnswer(),
-                answer.getSolver()
+                answerId,correct,answer.getQuestionCustom().getCard(),answer.getQuestionCustom().getContent(),publisherAnswer
+
         );
     }
 
