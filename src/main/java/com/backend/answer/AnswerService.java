@@ -188,7 +188,7 @@ public class AnswerService {
 
         // DTO로 변환하여 반환
         return new AnswerResultResponse(
-                answerId,correct,answer.getQuestionCustom().getCard(),answer.getQuestionCustom().getContent(),publisherAnswer,title,answer.getSolver()
+                answerId,correct,answer.getQuestionCustom().getCard(),answer.getQuestionCustom().getContent(),publisherAnswer,title,answer.getSolver(),answer.getQuestionCustom().getId()
 
         );
     }
