@@ -13,10 +13,10 @@ public class NicknameValidator implements ConstraintValidator<Nickname, String> 
         }
 
 //         조건: 10자 이내, 특수문자/띄어쓰기/이모지 포함 금지
-        String nicknamePattern = "^[a-zA-Z0-9가-힣]{1,10}$";
+
+        String nicknamePattern = "^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{1,10}$";
 
         return nickname.matches(nicknamePattern);
-
 //        return true;
     }
 }

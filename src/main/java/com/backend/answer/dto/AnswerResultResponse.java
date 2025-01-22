@@ -14,4 +14,5 @@ public class AnswerResultResponse {
     private String content;
     private String answer; // 출제자 정답
     private String title;
+    private String answerNickname;
 }
