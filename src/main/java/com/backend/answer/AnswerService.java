@@ -120,10 +120,10 @@ public class AnswerService {
         String select3 = questionCustom.getSelect3();
         String select4 = questionCustom.getSelect4();
 
-        long select1cnt = answerRepository.countByQuestionCustomIdAndAnswer(questionCustomId, "1");
-        long select2cnt = answerRepository.countByQuestionCustomIdAndAnswer(questionCustomId, "2");
-        long select3cnt = answerRepository.countByQuestionCustomIdAndAnswer(questionCustomId, "3");
-        long select4cnt = answerRepository.countByQuestionCustomIdAndAnswer(questionCustomId, "4");
+        long select1cnt = answerRepository.countByQuestionCustomIdAndAnswer(questionCustomId, select1);
+        long select2cnt = answerRepository.countByQuestionCustomIdAndAnswer(questionCustomId, select2);
+        long select3cnt = answerRepository.countByQuestionCustomIdAndAnswer(questionCustomId, select3);
+        long select4cnt = answerRepository.countByQuestionCustomIdAndAnswer(questionCustomId, select4);
 
         // 정답률 계산
         int select1per = select1cnt > 0
