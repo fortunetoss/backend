@@ -15,4 +15,7 @@ public class AnswerQuestionCustomResponse {
     private String select2; // 선택지 2
     private String select3; // 선택지 3
     private String select4; // 선택지 4
+    private String content;
+    private String domain;
+    private String publisher;
 }

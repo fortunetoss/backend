@@ -10,6 +10,6 @@ public interface AnswerRepositoryCustom {
 
     public Slice<Answer> getRightAnswer(Long QuestionCustomId, String Answer, Pageable pageable);
 
-    List<Answer> getWrongAnswer(Long questionCustomId);
+    Slice<Answer> getWrongAnswer(Long questionCustomId, String answer, Pageable pageable);
 
 }

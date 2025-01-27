@@ -109,6 +109,7 @@ public class SecurityConfig {
                         .requestMatchers("/login/**", "/", "/join").permitAll()
                         .requestMatchers("/oauth/**").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
+                        .requestMatchers("/api/users/validate").permitAll()
                         .anyRequest().authenticated());
 
         //세션 설정 : STATELESS
@@ -124,7 +125,9 @@ public class SecurityConfig {
 
                         CorsConfiguration configuration = new CorsConfiguration();
 
-                        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
+                        configuration.setAllowedOrigins(Arrays.asList(
+                                "http://localhost:3000",
+                                "https://fortunetoss.vercel.app/")); // 여러 도메인 허용
                         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                         configuration.setAllowCredentials(true);
                         configuration.setAllowedHeaders(Collections.singletonList("*"));

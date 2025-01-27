@@ -7,6 +7,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import java.util.Date;
 @Controller
 @ResponseBody
 @RequiredArgsConstructor
+@Slf4j
 public class ReissueController {
 
     private final JWTUtil jwtUtil;
@@ -29,6 +31,7 @@ public class ReissueController {
 
         //get refresh token
         String refresh = null;
+
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
 
@@ -37,6 +40,8 @@ public class ReissueController {
                 refresh = cookie.getValue();
             }
         }
+
+        log.info("refresh token: {}", refresh);
 
         if (refresh == null) {
 
@@ -90,33 +95,28 @@ public class ReissueController {
         int maxAge = (int)(86400000 / 1000);
 
         // Set-Cookie 헤더를 사용하여 쿠키 속성 설정
-        String cookieHeader = "refresh=" + newRefresh
-                + "; Max-Age=" + maxAge
-                + "; Path=/"
-//                + "; Domain=api.mungwithme.com"  // **백엔드 도메인으로 설정**
-                + "; HttpOnly"                   // 클라이언트에서 접근 불가 (보안
-                + "; Secure"                     // HTTPS에서만 쿠키 전송
-                + "; SameSite=None";             // 크로스 도메인에서 쿠키 전송 허용
-        response.addHeader("Set-Cookie", cookieHeader);
+//        String cookieHeader = "refresh=" + newRefresh
+//                + "; Max-Age=" + maxAge
+//                + "; Path=/"
+////                + "; Domain=api.mungwithme.com"  // **백엔드 도메인으로 설정**
+//                + "; HttpOnly"                   // 클라이언트에서 접근 불가 (보안
+//                + "; Secure"                     // HTTPS에서만 쿠키 전송
+//                + "; SameSite=None";             // 크로스 도메인에서 쿠키 전송 허용
+//        response.addHeader("Set-Cookie", cookieHeader);
 
-//        response.addCookie(jwtUtil.createCookie("refresh", newRefresh));
+        response.addCookie(createCookie("refresh", newRefresh));
 //        response.addHeader("Set-Cookie", "refresh=" + newRefresh + "; Path=/; HttpOnly; Secure; SameSite=None");
 
         return new ResponseEntity<>(HttpStatus.OK);
-
-//        //response
-//        response.setHeader("Authorization", "Bearer " + newAccess);
-//        response.addCookie(createCookie("refresh", newRefresh));
-//
-//        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     private Cookie createCookie(String key, String value) {
 
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(60*60*60);
-        cookie.setSecure(false);
+        cookie.setSecure(true);
         cookie.setPath("/");
+//        cookie.setDomain("luco777.store"); // 백엔드 도메인 지정
         cookie.setHttpOnly(true);
         cookie.setAttribute("SameSite", "None"); // Cross-Origin 전송 가능
 

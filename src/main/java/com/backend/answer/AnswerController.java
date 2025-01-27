@@ -61,13 +61,13 @@ public class AnswerController {
     /**
      * 사용자가 질문에 대한 답변 제출
      */
-    @PostMapping("/answer/{questionId}")
+    @PostMapping("/answer/{questionCustomId}")
     public ResponseEntity<?> submitAnswer(
-            @PathVariable Long questionId,
+            @PathVariable Long questionCustomId,
             @RequestBody SubmitRequest submitRequest) {
         try {
             // 서비스 로직 실행
-            AnswerResponse savedAnswer = answerService.save(questionId, submitRequest.getAnswer(), submitRequest.getSolver());
+            AnswerResponse savedAnswer = answerService.save(questionCustomId, submitRequest.getAnswer(), submitRequest.getSolver());
 
             // 성공 응답 반환
             ResponseDto<AnswerResponse> response = new ResponseDto<>(
@@ -86,7 +86,7 @@ public class AnswerController {
                     "fail",
                     "답변 제출 중 오류가 발생했습니다.",
                     null,
-                    new ResponseDto.ErrorDetails(e.getMessage(), "질문 ID: " + questionId),
+                    new ResponseDto.ErrorDetails(e.getMessage(), "질문 ID: " + questionCustomId),
                     500
             );
 
@@ -128,7 +128,7 @@ public class AnswerController {
     /**
      * 정답자 조회
      */
-    @GetMapping("/rightAnswer")
+    @PostMapping("/rightAnswer")
     public ResponseEntity<ResponseDto<?>> getRightAnswer(@RequestBody RightAnswerRequest rightAnswerRequest, @PageableDefault(page = 0,size = 4) Pageable pageable) {
 
         Slice<TotalResponse> rightAnswer = answerService.getRightAnswer(rightAnswerRequest, pageable);
@@ -145,10 +145,14 @@ public class AnswerController {
      * 오답자 조회
      * 우선 무한 스크롤 없이 리스트로 작성하였습니다.
      */
-    @GetMapping("/wrongAnswer")
-    public ResponseEntity<List<TotalResponse>> getWrongAnswers(@RequestParam Long questionCustomId) {
-        List<TotalResponse> wrongAnswer = answerService.getWrongAnswer(questionCustomId);
-        return ResponseEntity.ok(wrongAnswer);
+    @PostMapping("/wrongAnswer")
+    public ResponseEntity<ResponseDto<?>> getWrongAnswers(@RequestBody RightAnswerRequest rightAnswerRequest, @PageableDefault(page = 0,size = 4) Pageable pageable) {
+
+        Slice<TotalResponse> wrongAnswer = answerService.getWrongAnswer(rightAnswerRequest, pageable);
+
+        return new ResponseEntity<>(
+                new ResponseDto<>("success", "user wrongAnswer success", wrongAnswer, null, 200),
+                HttpStatus.OK);
     }
 
     /**

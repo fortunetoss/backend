@@ -6,6 +6,9 @@ import org.springframework.data.domain.Slice;
 
 public interface LuckyPouchCustomRepository {
     public Slice<LuckyPouch> findUsersLuckyPouches(User finduser, Pageable pageable);
-}
+
+    public LuckyPouch findUsersLuckyPouches(Long questionCustomId);
+
+    }
 
 

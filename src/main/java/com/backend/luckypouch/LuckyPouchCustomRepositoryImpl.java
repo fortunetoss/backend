@@ -1,5 +1,7 @@
 package com.backend.luckypouch;
 
+import com.backend.question.QQuestionCustom;
+import com.backend.user.QUser;
 import com.backend.user.User;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.CaseBuilder;
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.backend.luckypouch.QLuckyPouch.luckyPouch;
+import static com.backend.question.QQuestionCustom.questionCustom;
 import static com.backend.shape.QShape.shape;
+import static com.backend.user.QUser.user;
 
 @Repository
 public class LuckyPouchCustomRepositoryImpl implements LuckyPouchCustomRepository{
@@ -55,5 +59,19 @@ public class LuckyPouchCustomRepositoryImpl implements LuckyPouchCustomRepositor
                 .when(luckyPouch.questionCustom.isNotNull()).then(1)
                 .otherwise(0)
                 .desc();
+    }
+
+    public LuckyPouch findUsersLuckyPouches(Long questionCustomId) {
+
+        LuckyPouch luckyPouch1 = queryFactory.select(luckyPouch)
+                .from(luckyPouch)
+                .join(luckyPouch.shape, shape).fetchJoin()
+                .join(luckyPouch.questionCustom, questionCustom).fetchJoin()
+                .join(luckyPouch.user, user).fetchJoin()
+                .where(luckyPouch.questionCustom.id.eq(questionCustomId))
+                .fetchOne();
+
+
+        return luckyPouch1;
     }
 }

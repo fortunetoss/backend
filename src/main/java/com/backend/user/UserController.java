@@ -3,6 +3,8 @@ package com.backend.user;
 import com.backend.common.response.ResponseDto;
 import com.backend.user.dto.UserUpdateResponse;
 import com.backend.user.dto.UserUpdateRequest;
+import com.backend.user.dto.NicknameRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,4 +47,13 @@ public class UserController {
     public void deleteUser() {
         userService.deleteUser();
     }
+
+    @PostMapping("/users/validate")
+    public ResponseEntity<ResponseDto<?>> validateUser(@Valid @RequestBody NicknameRequest request) {
+
+        return new ResponseEntity<>(
+                new ResponseDto<>("success", "user validate success", null, null, 200),
+                HttpStatus.OK);
+    }
+
 }
