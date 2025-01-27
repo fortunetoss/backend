@@ -78,7 +78,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 //
         boolean newUser = customUserDetails.isNewUser();
 
-        response.sendRedirect("http://localhost:3000/callback"+ "?newUser=" + newUser + "&access=" + token);
+        response.sendRedirect("https://fortunetoss.vercel.app/callback"+ "?newUser=" + newUser + "&access=" + token);
     }
 
     private void setResponseTokens(HttpServletResponse response,String refreshToken) {
