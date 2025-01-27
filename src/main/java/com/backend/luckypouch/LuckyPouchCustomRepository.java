@@ -9,6 +9,9 @@ public interface LuckyPouchCustomRepository {
 
     public LuckyPouch findUsersLuckyPouches(Long questionCustomId);
 
+    public LuckyPouch findUsers(Long questionCustomId);
+
+
     }
 
 

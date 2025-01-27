@@ -74,4 +74,17 @@ public class LuckyPouchCustomRepositoryImpl implements LuckyPouchCustomRepositor
 
         return luckyPouch1;
     }
+
+    public LuckyPouch findUsers(Long questionCustomId){
+
+        LuckyPouch luckyPouch1 = queryFactory.select(luckyPouch)
+                .from(luckyPouch)
+                .join(luckyPouch.user, user).fetchJoin()
+                .where(luckyPouch.questionCustom.id.eq(questionCustomId))
+                .fetchOne();
+
+        return luckyPouch1;
+
+
+    }
 }
