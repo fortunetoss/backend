@@ -55,11 +55,9 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         GrantedAuthority auth = iterator.next();
         String role = auth.getAuthority();
 
-//        String token = jwtUtil.createJwt("access",username, role, 60*60*60L);
         String token = jwtUtil.createJwt("access",username, role, 86400000L);
 
         String refresh = jwtUtil.createJwt("refresh", username, role, 86400000L);
-//        String refresh = jwtUtil.createJwt(username, role, 86400000L);
 
 
         //Refresh 토큰 저장
@@ -68,17 +66,13 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 //        response.addCookie(createCookie("access", token));
 
 //        response.addCookie(createCookie("refresh", refresh));
-//        response.addCookie(createCookie("refresh", refresh));
 
-        //
 //        setResponseTokens(response,refresh);
 
-
-
-//
         boolean newUser = customUserDetails.isNewUser();
 
         response.sendRedirect("https://fortunetoss.vercel.app/callback"+ "?newUser=" + newUser + "&access=" + token);
+
     }
 
     private void setResponseTokens(HttpServletResponse response,String refreshToken) {
@@ -107,10 +101,11 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(60*60*60);
-        cookie.setSecure(false);
+        cookie.setSecure(true);
+//        cookie.setDomain("luco777.store"); // 백엔드 도메인 지정
         cookie.setPath("/");
         cookie.setHttpOnly(true);
-        cookie.setAttribute("SameSite", "Lax"); // Cross-Origin 전송 가능
+        cookie.setAttribute("SameSite", "None"); // Cross-Origin 전송 가능
 
 
         return cookie;
