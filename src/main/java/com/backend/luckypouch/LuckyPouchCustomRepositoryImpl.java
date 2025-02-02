@@ -36,6 +36,7 @@ public class LuckyPouchCustomRepositoryImpl implements LuckyPouchCustomRepositor
         List<LuckyPouch> luckyPouches = queryFactory.select(luckyPouch)
                 .from(luckyPouch)
                 .join(luckyPouch.shape, shape).fetchJoin()
+                .leftJoin(luckyPouch.questionCustom).fetchJoin() // questionCustom은 Left Join으로 fetchJoin
                 .where(luckyPouch.user.eq(finduser))
                 .offset(pageable.getOffset()) // 시작 위치 설정
                 .limit(pageable.getPageSize() + 1) // 요청 크기보다 1 더 가져옴 (다음 페이지 존재 여부 확인)
@@ -73,5 +74,18 @@ public class LuckyPouchCustomRepositoryImpl implements LuckyPouchCustomRepositor
 
 
         return luckyPouch1;
+    }
+
+    public LuckyPouch findUsers(Long questionCustomId){
+
+        LuckyPouch luckyPouch1 = queryFactory.select(luckyPouch)
+                .from(luckyPouch)
+                .join(luckyPouch.user, user).fetchJoin()
+                .where(luckyPouch.questionCustom.id.eq(questionCustomId))
+                .fetchOne();
+
+        return luckyPouch1;
+
+
     }
 }

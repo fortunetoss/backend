@@ -55,7 +55,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         GrantedAuthority auth = iterator.next();
         String role = auth.getAuthority();
 
-        String token = jwtUtil.createJwt("access",username, role, 60000L);
+        String token = jwtUtil.createJwt("access",username, role, 86400000L);
 
         String refresh = jwtUtil.createJwt("refresh", username, role, 86400000L);
 
@@ -65,14 +65,14 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
 //        response.addCookie(createCookie("access", token));
 
-        response.addCookie(createCookie("refresh", refresh));
+//        response.addCookie(createCookie("refresh", refresh));
 
 //        setResponseTokens(response,refresh);
 
         boolean newUser = customUserDetails.isNewUser();
 
-//        response.sendRedirect("https://fortunetoss.vercel.app/callback"+ "?newUser=" + newUser + "&access=" + token);
-        response.sendRedirect("https://fortunetoss.vercel.app/callback"+ "?newUser=" + newUser);
+        response.sendRedirect("https://fortunetoss.vercel.app/callback"+ "?newUser=" + newUser + "&access=" + token);
+
     }
 
     private void setResponseTokens(HttpServletResponse response,String refreshToken) {

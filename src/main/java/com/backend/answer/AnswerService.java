@@ -6,6 +6,7 @@ import com.backend.luckypouch.LuckyPouchRepository;
 import com.backend.question.QuestionCustom;
 import com.backend.question.QuestionCustomRepository;
 import com.backend.user.User;
+import com.backend.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -23,6 +24,7 @@ public class AnswerService {
     private final AnswerRepository answerRepository;
     private final QuestionCustomRepository questionCustomRepository;
     private final LuckyPouchRepository luckyPouchRepository;
+    private final UserService userService;
 
 
     public AnswerQuestionCustomResponse getQuestionCustom(Long questionCustomId) {
@@ -103,6 +105,16 @@ public class AnswerService {
 
 
     public ResultQuestionResponse calculateStatistics(Long questionCustomId) {
+
+        User currentUser = userService.getCurrentUser();
+
+        LuckyPouch realHavePouchUser = luckyPouchRepository.findUsers(questionCustomId);
+
+
+        if(currentUser.getId() != realHavePouchUser.getUser().getId()){
+            throw new IllegalArgumentException("해당 사용자는 해당 질문에 대한 권한이 없습니다.");
+        }
+
 
         // 질문 조회
         QuestionCustom questionCustom = questionCustomRepository.findById(questionCustomId)
