@@ -29,10 +29,7 @@
 
 ---
 
-## 📷 이미지 자료
 
-
-<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/44ce5cb0-552b-4c5c-b253-51c571f37d6e" />
 
 **출제자(복 나누미)**  
 
@@ -68,6 +65,11 @@
 공유받은 사람의 문제 풀이 및 덕담 확인 -> 풀은 문제 공유 or 나도 새로운 문제 내기
 <br>
 <img width="507" alt="스크린샷 2025-07-02 오전 10 56 09" src="https://github.com/user-attachments/assets/ca96b075-454a-4b26-a657-8f78c1c69871" />
+
+## 📷 이미지 자료
+
+
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/44ce5cb0-552b-4c5c-b253-51c571f37d6e" />
 
 ## 💡 팀 Bokkie
 - **PM**: 김미연  
