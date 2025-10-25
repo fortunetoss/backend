@@ -92,14 +92,14 @@
 
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/eeba0802-2f83-4961-b1d4-f8c4e141f671" width="420"><br>
+  <img src="https://github.com/user-attachments/assets/eeba0802-2f83-4961-b1d4-f8c4e141f671" width=""><br>
 <span style="font-size:14px;">로그인 메인 페이지</span>
 </p>
 
 <br>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/131d57e7-30ea-41ca-afc5-d4811d53b0ad" width="420"><br>
+  <img src="https://github.com/user-attachments/assets/131d57e7-30ea-41ca-afc5-d4811d53b0ad" width="400"><br>
 <span style="font-size:14px;">홈 화면</span>
 </p>
 <br>
