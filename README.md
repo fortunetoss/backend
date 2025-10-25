@@ -21,9 +21,9 @@
 
 ## 👥 팀 구성
 
-| <img src="https://avatars.githubusercontent.com/u/152036928?v=4" width="120"> | <img src="https://github.com/user-attachments/assets/aa65b087-7e22-4dc9-b6d9-f9f7ce19e9c1" width="120"> | <img src="https://github.com/user-attachments/assets/9b344c20-0b4f-4e30-8d0f-91bdb1a4de91" width="120"> | <img src="https://github.com/user-attachments/assets/4b56dfc9-36da-4783-9bc1-6d42eae8ec53" width="120"> | <img src="https://github.com/user-attachments/assets/0a8eab03-fb38-476b-9b3a-6049fa8d6e5a" width="120"> | <img src="https://github.com/user-attachments/assets/870d61db-d3c4-4c8d-a0bc-451f59227da1" width="120"> |
+| <img src="https://avatars.githubusercontent.com/u/152036928?v=4" width="120"> | <img src="https://img1.kakaocdn.net/thumb/R640x640.q70/?fname=http://t1.kakaocdn.net/account_images/default_profile.jpeg" width="120"> | <img src="https://img1.kakaocdn.net/thumb/R640x640.q70/?fname=http://t1.kakaocdn.net/account_images/default_profile.jpeg" width="120"> | <img src="https://img1.kakaocdn.net/thumb/R640x640.q70/?fname=http://t1.kakaocdn.net/account_images/default_profile.jpeg" width="120"> | <img src="https://img1.kakaocdn.net/thumb/R640x640.q70/?fname=http://t1.kakaocdn.net/account_images/default_profile.jpeg" width="120"> | <img src="https://img1.kakaocdn.net/thumb/R640x640.q70/?fname=http://t1.kakaocdn.net/account_images/default_profile.jpeg" width="120"> |
 |:---------------------------------------------:|:---------------------------------------------:|:---------------------------------------------:|:---------------------------------------------:|:---------------------------------------------:|:---------------------------------------------:|
-| [HyungGeun](https://github.com/HyungGeun94)<br>**BE** | [MiYeon](https://github.com/MiYeonKim)<br>**PM** | [HyeWon](https://github.com/HyeWonFE)<br>**FE** | [YunA](https://github.com/YunAFront)<br>**FE** | [ChaeWon](https://github.com/ChaeWonDE)<br>**DE** | [JiWon](https://github.com/JiWonData)<br>**DE** |
+| [HyungGeun](https://github.com/HyungGeun94)<br>**BE** | [MiYeon]<br>**PM** | [HyeWon]<br>**FE** | [YunA]<br>**FE** | [ChaeWon]<br>**DE** | [JiWon]<br>**DE** |
 
 ---
 
@@ -76,26 +76,47 @@
 ## 📸 주요 화면
 
 ### 🎁 복 나누미 (퀴즈 출제자)
-| 화면 | 설명            |
-|------|---------------|
-| ![출제자화면](https://github.com/user-attachments/assets/eeba0802-2f83-4961-b1d4-f8c4e141f671) | 로그인 메인 페이지    |
-| ![홈화면](https://github.com/user-attachments/assets/131d57e7-30ea-41ca-afc5-d4811d53b0ad) | 홈 화면          |
-| ![문제작성](https://github.com/user-attachments/assets/7196273e-c5a3-45e6-8f20-ab472e1bc59b) | 문제 작성 및 덕담 입력 |
-| ![통계확인](https://github.com/user-attachments/assets/ee2b2cf7-c1d5-4905-908a-fb5f92549355) | 정답자·오답자 통계 확인 |
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/eeba0802-2f83-4961-b1d4-f8c4e141f671" width="420"><br>
+  <sub>로그인 메인 페이지</sub>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/131d57e7-30ea-41ca-afc5-d4811d53b0ad" width="420"><br>
+  <sub>홈 화면</sub>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7196273e-c5a3-45e6-8f20-ab472e1bc59b" width=""><br>
+  <sub>문제 작성 및 덕담 입력</sub>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ee2b2cf7-c1d5-4905-908a-fb5f92549355" width="420"><br>
+  <sub>정답자·오답자 통계 확인</sub>
+</p>
+
+---
 
 ### 🍀 복 받으미 (퀴즈 풀이자)
-| 화면 | 설명 |
-|------|------|
-| ![문제풀이](https://github.com/user-attachments/assets/fa32e888-c68a-4c68-80a8-eae5dbe8804b) | 문제 풀이 및 덕담 확인 |
-| ![공유화면](https://github.com/user-attachments/assets/ca96b075-454a-4b26-a657-8f78c1c69871) | 결과 공유 및 신규 퀴즈 생성 |
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/fa32e888-c68a-4c68-80a8-eae5dbe8804b" width=""><br>
+  <sub>문제 풀이 및 덕담 확인</sub>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ca96b075-454a-4b26-a657-8f78c1c69871" width="300"><br>
+  <sub>결과 공유 및 신규 퀴즈 생성</sub>
+</p>
 
 ---
 
 ## 🧩 ERD
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/44ce5cb0-552b-4c5c-b253-51c571f37d6e" width="400">
+  <img src="https://github.com/user-attachments/assets/44ce5cb0-552b-4c5c-b253-51c571f37d6e" width="">
 </p>
 
 ---
