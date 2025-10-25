@@ -42,7 +42,7 @@
 - **연관관계와 생명주기**를 고려한 엔티티 설계
 - **@Valid 기반 유효성 검증** 및 커스텀 Validator 적용
 - **OAuth2 / JWT / Refresh Token** 기반 인증 구조
-- **테스트 코드**로 서비스 신뢰성 확보
+- **테스트 코드** 도입하여 개발의 안전장치 확보 노력
 
 ---
 
@@ -56,41 +56,49 @@
 | Spring Security / OAuth2 Client | 6.4.1 |
 | JPA | 3.4.0 |
 | QueryDSL | 5.0.0 |
-| JWT | 0.12.3 |
-| Slf4j | 2.24.1 |
 
 ### 🗄️ Database
-| DB | 버전 |
-|----|------|
-| MySQL | 8.0 |
-| H2 (테스트용) | 2.3.232 |
+| DB | 버전    |
+|----|-------|
+| MySQL | 8.0.x |
+| H2 (테스트용) | 2.3.x |
 
 ### 🌐 Infra
-| 기술 | 버전 |
-|------|------|
-| Docker | 27.3.1 |
-| Docker Compose | 2.30.3-desktop.1 |
+| 기술                  | 버전                                             |
+|---------------------|------------------------------------------------|
+| Docker              | 27.3.1                                         |
+| Docker Compose      | 2.30.3-desktop.1                               |
+| AWS EC2 , RDS , S3  | ||
+
 
 ---
 
 ## 📸 주요 화면
 
 ### 🎁 복 나누미 (퀴즈 출제자)
+<br>
+
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/eeba0802-2f83-4961-b1d4-f8c4e141f671" width="420"><br>
   <sub>로그인 메인 페이지</sub>
+
 </p>
+
+<br>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/131d57e7-30ea-41ca-afc5-d4811d53b0ad" width="420"><br>
   <sub>홈 화면</sub>
 </p>
+<br>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/7196273e-c5a3-45e6-8f20-ab472e1bc59b" width=""><br>
   <sub>문제 작성 및 덕담 입력</sub>
 </p>
+<br>
+
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/ee2b2cf7-c1d5-4905-908a-fb5f92549355" width="420"><br>
@@ -100,11 +108,13 @@
 ---
 
 ### 🍀 복 받으미 (퀴즈 풀이자)
+<br>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/fa32e888-c68a-4c68-80a8-eae5dbe8804b" width=""><br>
   <sub>문제 풀이 및 덕담 확인</sub>
 </p>
+<br>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/ca96b075-454a-4b26-a657-8f78c1c69871" width="300"><br>
@@ -123,9 +133,8 @@
 
 ## 💡 주요 기능 및 코드 예시
 
-공유,풀이,통계 확인,소셜로그인, 엑세스 리프레시 토큰 사용, 
 
-### 🔐 인증 test (OAuth2 + JWT)
+### 🔐 인증 테스트 (OAuth2 + JWT)
 ```java
 @Test
 @DisplayName("일반로그인_토큰발급성공")
@@ -144,12 +153,23 @@ void 로그인_성공() throws Exception {
     String accessToken = result.getResponse().getHeader("access");
     String refreshToken = result.getResponse().getCookie("refresh").getValue();
     
-    
-
     assertNotNull(accessToken);
     assertNotNull(refreshToken);
     assertEquals(joinDTO.getUsername(), jwtUtil.getUsername(accessToken));
 }
+```
+<br>
+<br>
+
+
+🧠 QueryDSL (복주머니 조회)
+```java
+/**
+ *  Many 기준 조회로 페이징이 가능
+ *  LuckyPouch → Shape, QuestionCustom 은 모두 단일 참조 관계
+ *  fetch join 을 사용해 연관된 데이터를 즉시 로딩 (N+1 방지)
+ *  페이징(offset + limit) 은 중복 데이터 뻥튀기 없음
+ */
 
 public Slice<LuckyPouch> findUsersLuckyPouches(User findUser, Pageable pageable) {
     List<LuckyPouch> luckyPouches = queryFactory.select(luckyPouch)
@@ -171,7 +191,11 @@ public Slice<LuckyPouch> findUsersLuckyPouches(User findUser, Pageable pageable)
     return new SliceImpl<>(luckyPouches, pageable, hasNext);
 }
 ```
-🧠 QueryDSL (복주머니 조회)
+<br>
+<br>
+
+🚦조건 기반 정렬 (Conditional Ordering)
+
 ```java
 private OrderSpecifier<Integer> questionCustomIsNotNullDesc() {
     return new CaseBuilder()
@@ -180,7 +204,10 @@ private OrderSpecifier<Integer> questionCustomIsNotNullDesc() {
         .desc();
 }
 ```
-서브쿼리 사용
+<br>
+<br>
+
+🏘️서브쿼리 사용
 ```java
   public Question findRandomQuestion(User findUser){
         Question findQuestion = queryFactory.select(question)
@@ -201,6 +228,9 @@ private OrderSpecifier<Integer> questionCustomIsNotNullDesc() {
     }
 
 ```
+
+<br>
+<br>
 
 📜 유효성 검증 (Custom @Valid)
 ```java
@@ -235,6 +265,11 @@ public ResponseEntity<ResponseDto<?>> validateUser(@Valid @RequestBody NicknameR
         HttpStatus.OK);
 }
 ```
+<br>
+<br>
+
+
+
 🌱 도메인 초기화 (생명주기 활용)
 ```java
 @Component
@@ -247,12 +282,16 @@ public class ShapeInitializer {
         if (shapeRepository.count() == 0) {
             List<String> shapes = List.of("A", "B", "C", "D", "E", "F", "G", "H");
             shapes.forEach(s -> shapeRepository.save(Shape.builder().domain(s).build()));
-            System.out.println("Shape 데이터 초기화 완료 🌟");
+            System.out.println("Shape 데이터 초기화 완료");
         }
     }
 }
 ```
-🧹 회원탈퇴 로직 (연관관계 및 생명주기 고려)
+<br>
+<br>
+
+
+🧹 회원탈퇴 로직 (연관관계 참조 및 생명주기 고려)
 ```java
 @Transactional
 public void deleteUser() {
@@ -272,6 +311,7 @@ public void deleteUser() {
     userRepository.delete(currentUser);
 }
 ```
+<br>
 
 ---
 
@@ -279,21 +319,21 @@ public void deleteUser() {
 
 ### 🙋🏻‍♂️ 전형근 (BE)
 
-이번 프로젝트는 **처음으로 팀 단위에서 도메인 중심 설계(JPA + QueryDSL)** 를 적용해 본 경험이었다.  
+이번 프로젝트는 **팀 단위에서 도메인 중심 설계(JPA + QueryDSL)** 를 적극적으로 적용해 보았다.  
 단순 CRUD 중심의 백엔드가 아니라, **엔티티 간 연관관계와 생명주기**를 고민하며 설계했다는 점이 가장 큰 차이였다.
-
-특히 기억에 남는 부분은 다음과 같다.
 
 - **QueryDSL**로 복잡한 조건 검색과 페이징 로직을 직접 구현하며, SQL과 ORM 사이의 균형을 체감했다.
 - **OAuth2 + JWT 인증 구조**를 구축하면서 토큰의 발급·갱신·만료 흐름을 코드로 명확히 다뤘다.
 - **커스텀 @Valid 검증기**를 구현해 입력값 검증을 서비스 로직과 분리하는 구조적 사고를 익혔다.
 - **생명주기(@PostConstruct)** 를 활용해 도메인 데이터를 초기화하며 Spring Lifecycle을 이해했다.
-- 팀 내 코드 리뷰를 통해 “가독성보다 의도 전달이 우선”이라는 실무 기준을 체득했다.
 
-이 프로젝트를 통해 **“조회는 SQL스럽게, 조립은 자바스럽게”** 라는 원칙의 중요성을 실감했다.  
-코드를 단순히 작동시키는 것이 아니라, 유지보수와 확장성을 고려한 **설계 중심 개발자**로 성장한 계기였다.
+다양한 직군의 팀원들과 협업하며 소통하는 과정이 즐거웠고,
+각자의 역할에서 나온 다양한 의견을 들을 수 있어 유익한 경험이었다.
 
-> 💬 “5주간의 짧은 협업이었지만, 우리는 기능이 아닌 구조로 성장했다.”
+> 💬 “5주간의 짧은 협업이었지만, 개발 기술뿐만 아니라
+> <br>
+> 협업과 소통 능력까지 배울 수 있었던 뜻깊은 시간이었다.”
+
 
 ---
 
