@@ -243,8 +243,14 @@ private OrderSpecifier<Integer> questionCustomIsNotNullDesc() {
 <br>
 <br>
 
-📜 유효성 검증 (Custom @Valid)
+📜 유효성 검증 (커스텀 애너테이션 + Validator 적용)
+
+닉네임 형식 제약을 위해 @Nickname 애너테이션과 Validator 직접 정의
+<br>
+→ 비즈니스 로직과 입력 검증을 완전히 분리
+
 ```java
+//  커스텀 애너테이션 정의
 @Constraint(validatedBy = NicknameValidator.class)
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
@@ -253,6 +259,9 @@ public @interface Nickname {
   Class<?>[] groups() default {};
   Class<? extends Payload>[] payload() default {}; 
 }
+
+
+//  Validator 구현
 public class NicknameValidator implements ConstraintValidator<Nickname, String> {
     //         조건: 10자 이내, 특수문자/띄어쓰기/이모지 포함 금지
     private static final String PATTERN = "^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{1,10}$";
@@ -262,12 +271,19 @@ public class NicknameValidator implements ConstraintValidator<Nickname, String> 
     }
 }
 
+
+
+//  DTO + 컨트롤러 적용
+
+
 public class NicknameRequest {
 
     @NotNull(message = "닉네임은 필수 입력 값입니다.") // 추가
     @Nickname
     private String nickname;
 }
+
+
 @PostMapping("/users/validate")
 public ResponseEntity<ResponseDto<?>> validateUser(@Valid @RequestBody NicknameRequest request) {
 
