@@ -340,8 +340,6 @@ public LuckyPouch findUsers(Long questionCustomId){
 
     }
 
-}
-
 
 
 ```
@@ -401,7 +399,7 @@ public class NicknameRequest {
     }
 ```
 
-생명주기를 활용한 도메인 객체 초기화?로직?
+생명주기를 활용한 도메인 객체 초기화 로직
 ````java
 @Component
 @RequiredArgsConstructor
@@ -424,7 +422,7 @@ public class ShapeInitializer {
 
 ````
 
-userService 연관관계 고려한 람다식 활용한 삭제.?? 그래도 쫌 이제 연관관계나오고 람다식 나오고 쫌 도메인 다루려고 하네
+userService 연관관계 고려한 람다식 활용한 삭제
 ```java
     public void deleteUser() {
         User currentUser = getCurrentUser(); // 현재 로그인된 사용자 가져오기
