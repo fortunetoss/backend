@@ -88,20 +88,20 @@
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/131d57e7-30ea-41ca-afc5-d4811d53b0ad" width="420"><br>
-  <sub>홈 화면</sub>
+<span style="font-size:14px;">홈 화면</span>
 </p>
 <br>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/7196273e-c5a3-45e6-8f20-ab472e1bc59b" width=""><br>
-  <sub>문제 작성 및 덕담 입력</sub>
+<span style="font-size:14px;">문제 작성 및 덕담 입력</span>
 </p>
 <br>
 
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/ee2b2cf7-c1d5-4905-908a-fb5f92549355" width="420"><br>
-  <sub>정답자·오답자 통계 확인</sub>
+<span style="font-size:14px;">정답자·오답자 통계 확인</span>
 </p>
 
 ---
@@ -111,13 +111,13 @@
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/fa32e888-c68a-4c68-80a8-eae5dbe8804b" width=""><br>
-  <sub>문제 풀이 및 덕담 확인</sub>
+<span style="font-size:14px;">문제 풀이 및 덕담 확인</span>
 </p>
 <br>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/ca96b075-454a-4b26-a657-8f78c1c69871" width="300"><br>
-  <sub>결과 공유 및 신규 퀴즈 생성</sub>
+<span style="font-size:14px;">결과 공유 및 신규 퀴즈 생성</span>
 </p>
 
 ---
