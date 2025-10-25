@@ -81,8 +81,7 @@
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/eeba0802-2f83-4961-b1d4-f8c4e141f671" width="420"><br>
-  <sub>로그인 메인 페이지</sub>
-
+<span style="font-size:14px;">로그인 메인 페이지</span>
 </p>
 
 <br>
