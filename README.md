@@ -49,26 +49,38 @@
 ## 🧰 기술 스택
 
 ### 🌱 Spring
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🌱 Spring
 | 기술 | 버전 |
 |------|------|
 | Java | 17 |
 | Spring Boot | 3.4.0 |
-| Spring Security / OAuth2 Client | 6.4.1 |
+| Spring Security / OAuth2 | 6.4.1 |
 | JPA | 3.4.0 |
 | QueryDSL | 5.0.0 |
 
+</td>
+<td width="50%" valign="top">
+
 ### 🗄️ Database
-| DB | 버전    |
-|----|-------|
+| DB | 버전 |
+|----|------|
 | MySQL | 8.0.x |
 | H2 (테스트용) | 2.3.x |
 
 ### 🌐 Infra
-| 기술                  | 버전                                             |
-|---------------------|------------------------------------------------|
-| Docker              | 27.3.1                                         |
-| Docker Compose      | 2.30.3-desktop.1                               |
-| AWS EC2 , RDS , S3  | ||
+| 기술 |
+|------|
+| Docker |
+| Docker Compose |
+| AWS EC2 / RDS / S3 |
+
+</td>
+</tr>
+</table>
 
 
 ---
